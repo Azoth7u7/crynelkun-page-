@@ -233,7 +233,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            max-width: 350px;
+            max-width: 400px;
         }
 
         /* ---------------------------------- */
@@ -271,7 +271,7 @@
 
         /* Panel de video/stream principal */
         .video-container {
-            height: 65%;
+            height: 70%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -353,14 +353,13 @@
             margin-top: 15px;
         }
 
-        /* Panel de métricas */
+        /* Panel de métricas - MÁS COMPACTO */
         .metrics-panel {
-            height: 35%;
-            padding: 20px;
+            height: 30%;
+            padding: 15px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
 
         .metric {
@@ -369,32 +368,33 @@
             justify-content: center;
             align-items: center;
             background: rgba(123, 44, 191, 0.2);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 10px;
             transition: all 0.3s ease;
         }
 
         .metric:hover {
             background: rgba(123, 44, 191, 0.3);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .metric-value {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--color-acento);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .metric-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--color-texto);
             opacity: 0.8;
+            text-align: center;
         }
 
-        /* Panel de donaciones/peticiones */
+        /* Panel de donaciones/peticiones - MÁS GRANDE */
         .donations-panel {
-            height: 40%;
+            height: 50%;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -445,59 +445,39 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-top: 10px;
+            flex-grow: 1;
         }
 
         .action {
             background: rgba(157, 78, 221, 0.3);
             border: 1px solid var(--color-borde);
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-        }
-
-        .action:hover {
-            background: rgba(157, 78, 221, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .action-cost {
-            font-weight: 600;
-            color: var(--color-acento);
-            margin-top: 5px;
-        }
-
-        /* Panel de información */
-        .info-panel {
-            height: 30%;
-            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        .coming-soon {
-            font-size: 2rem;
-            font-weight: 700;
+        .action:hover {
+            background: rgba(157, 78, 221, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+        }
+
+        .action-cost {
+            font-weight: 600;
             color: var(--color-acento);
-            text-shadow: 0 0 15px var(--color-brillo);
-            text-align: center;
-            margin-bottom: 15px;
+            margin-top: 5px;
+            font-size: 0.9rem;
         }
 
-        .next-stream {
-            font-size: 1.1rem;
-            color: var(--color-texto);
-            text-align: center;
-            margin-top: 10px;
-            opacity: 0.9;
-        }
-
-        /* Panel de chat */
+        /* Panel de chat - MÁS GRANDE */
         .chat-panel {
-            height: 30%;
+            height: 50%;
             padding: 15px;
             display: flex;
             flex-direction: column;
@@ -638,7 +618,7 @@
                 flex-direction: row;
             }
             
-            .donations-panel, .info-panel, .chat-panel {
+            .donations-panel, .chat-panel {
                 flex: 1;
             }
         }
@@ -649,8 +629,8 @@
             }
             
             .metrics-panel {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(4, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
             }
             
             .channel-name {
@@ -663,6 +643,10 @@
             
             .waiting-text, .return-text {
                 font-size: 1.5rem;
+            }
+            
+            .donation-actions {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -714,7 +698,7 @@
                 </div>
             </div>
             
-            <!-- Panel de métricas -->
+            <!-- Panel de métricas - MÁS COMPACTO -->
             <div class="stream-panel metrics-panel">
                 <div class="metric">
                     <div class="metric-value">1.2K</div>
@@ -737,7 +721,7 @@
         
         <!-- Sidebar (más pequeña) -->
         <div class="sidebar">
-            <!-- Panel de donaciones/peticiones -->
+            <!-- Panel de donaciones/peticiones - MÁS GRANDE -->
             <div class="stream-panel donations-panel">
                 <div class="panel-title">DONACIONES & PETICIONES</div>
                 
@@ -767,17 +751,18 @@
                         <div>🍕 Comer algo</div>
                         <div class="action-cost">75 puntos</div>
                     </div>
+                    <div class="action">
+                        <div>🎮 Cambiar juego</div>
+                        <div class="action-cost">150 puntos</div>
+                    </div>
+                    <div class="action">
+                        <div>💬 Decir algo</div>
+                        <div class="action-cost">25 puntos</div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Panel de información -->
-            <div class="stream-panel info-panel">
-                <div class="coming-soon">PRÓXIMO STREAM</div>
-                <div class="next-stream">Jueves 21:00 GMT-5</div>
-                <div class="next-stream">Jugando: Minecraft Modded</div>
-            </div>
-            
-            <!-- Panel de chat -->
+            <!-- Panel de chat - MÁS GRANDE -->
             <div class="stream-panel chat-panel">
                 <div class="panel-title">CHAT EN VIVO</div>
                 <div class="chat-box">
@@ -796,6 +781,9 @@
                     <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
                     <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
                     <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
+                    <div class="chat-message"><span class="chat-user">@Donator:</span> ¡Acabo de donar para un baile! 💃</div>
+                    <div class="chat-message"><span class="chat-user">@Moderator:</span> Recuerden ser respetuosos en el chat</div>
+                    <div class="chat-message"><span class="chat-user">@NewViewer:</span> ¿Cómo funciona el sistema de puntos?</div>
                 </div>
             </div>
         </div>
@@ -874,6 +862,26 @@
                 let currentLikes = parseInt(likes.textContent);
                 likes.textContent = (currentLikes + Math.floor(Math.random() * 2)) + '';
             }, 5000);
+            
+            // Interactividad para las acciones de donación
+            const actions = document.querySelectorAll('.action');
+            actions.forEach(action => {
+                action.addEventListener('click', function() {
+                    const actionText = this.querySelector('div:first-child').textContent;
+                    const actionCost = this.querySelector('.action-cost').textContent;
+                    
+                    // Efecto visual al hacer clic
+                    this.style.transform = 'scale(0.95)';
+                    this.style.background = 'rgba(157, 78, 221, 0.7)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.background = '';
+                    }, 200);
+                    
+                    console.log(`Acción seleccionada: ${actionText} - Costo: ${actionCost}`);
+                });
+            });
         });
     </script>
 </body>
