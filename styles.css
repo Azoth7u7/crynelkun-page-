@@ -1,0 +1,31 @@
+/* Limpia los márgenes y rellenos por defecto del navegador */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Evita barras de desplazamiento */
+    background-color: #000000; /* Fondo negro fuera del overlay */
+}
+
+.overlay-container {
+    /* Centra el overlay en el medio de la pantalla */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Define el ancho máximo (ej. Full HD) y la proporción 16:9 */
+    max-width: 1920px; 
+    width: 95vw; /* Usa el 95% del ancho del viewport */
+    padding-bottom: 53.4375vw; /* Mantiene la proporción 16:9 de forma dinámica */
+    max-height: 90vh; /* Limita la altura si la ventana es pequeña */
+    
+    /* Asegura que el contenido CSS base esté aplicado */
+    background-color: var(--color-fondo-oscuro);
+    overflow: hidden; 
+    font-family: 'Arial', sans-serif;
+}
+
+/* El resto de tus estilos (.cloud, .stream-panel, .chat-box, etc.) 
+   deben ir aquí abajo */
