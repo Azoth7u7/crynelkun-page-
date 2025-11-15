@@ -2,12 +2,12 @@
 /* DEFINICIÓN DE VARIABLES DE COLOR */
 /* ---------------------------------- */
 :root {
-    --color-fondo-oscuro: #2e1d3a;    
-    --color-principal-claro: #bb99ee; 
+    --color-fondo-oscuro: #2e1d3a;    /* Morado oscuro de fondo */
+    --color-principal-claro: #bb99ee; /* Morado lila de las cajas/bordes */
     --color-texto: #f2e9ff;
-    --color-marco-borde: #8c73b0;     
+    --color-marco-borde: #8c73b0;     /* Borde oscuro de las cajas */
     --color-nube: #f7f0ff;
-    --color-brillo: #e6b3ff;          
+    --color-brillo: #e6b3ff;          /* Color del brillo neón */
     --color-degradado-inicio: rgba(187, 153, 238, 0.7); /* Ligeramente más oscuro al inicio */
     --color-degradado-fin: rgba(220, 190, 255, 0.5);   /* Ligeramente más claro al final */
 }
@@ -20,26 +20,29 @@ body, html {
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden; 
-    background-color: #000000; 
+    overflow: hidden; /* Evita barras de desplazamiento */
+    background-color: #000000; /* Fondo negro */
 }
 
 .overlay-container {
+    /* Centra el overlay en el medio de la pantalla */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
+    /* Define el ancho máximo y la proporción 16:9 de forma dinámica */
     max-width: 1920px; 
     width: 95vw; 
     padding-bottom: 53.4375vw; 
     max-height: 90vh; 
     
+    /* Colores de fondo */
     background-color: var(--color-fondo-oscuro);
     overflow: hidden; 
     font-family: 'Arial', sans-serif;
-    border-radius: 20px; /* Bordes redondeados para el contenedor principal */
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); /* Sombra suave para que destaque del fondo negro */
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); 
 }
 
 /* ---------------------------------- */
@@ -83,7 +86,7 @@ body, html {
     /* EFECTO NEÓN/BRILLO: Sombra exterior */
     box-shadow: 0 0 15px 5px var(--color-brillo), 0 4px 10px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(2px); 
-    transition: all 0.3s ease; /* Transición suave para efectos hover si se añaden */
+    transition: all 0.3s ease; 
 }
 
 /* Caja principal de espera */
@@ -94,7 +97,7 @@ body, html {
     height: 75%;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Para alinear el texto de Crynel-kun */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     color: var(--color-texto);
@@ -106,15 +109,15 @@ body, html {
 
 /* Estilo para el nombre "Crynel-kun" con brillo */
 .neon-text {
-    color: var(--color-brillo); /* Color base del texto neón */
+    color: var(--color-brillo); 
     text-shadow: 0 0 5px var(--color-brillo), 
                  0 0 10px var(--color-brillo), 
                  0 0 20px var(--color-brillo),
-                 0 0 40px rgba(230, 179, 255, 0.7); /* Sombra más grande para el halo */
-    animation: neonBlink 1.5s ease-in-out infinite alternate; /* Animación de parpadeo neón */
-    font-size: 1.2em; /* Un poco más grande que el texto circundante */
+                 0 0 40px rgba(230, 179, 255, 0.7); 
+    animation: neonBlink 1.5s ease-in-out infinite alternate; 
+    font-size: 1.2em; 
     letter-spacing: 3px;
-    margin: 10px 0; /* Espaciado con el texto de arriba y abajo */
+    margin: 10px 0; 
 }
 
 @keyframes neonBlink {
@@ -138,10 +141,10 @@ body, html {
 /* Estilos específicos para el scrollbar (solo en Chrome/Edge) */
 .chat-box::-webkit-scrollbar {
     width: 5px;
-    background-color: transparent; /* Fondo transparente para el scrollbar */
+    background-color: transparent; 
 }
 .chat-box::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2); /* Pista más sutil */
+    background: rgba(0, 0, 0, 0.2); 
     border-radius: 10px;
 }
 .chat-box::-webkit-scrollbar-thumb {
