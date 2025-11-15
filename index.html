@@ -62,10 +62,14 @@
             let scrollDirection = 1; // 1 para abajo, -1 para arriba
             const scrollSpeed = 0.5; // Velocidad del scroll
             const pauseTime = 3000; // Tiempo en ms para pausar en los extremos (3 segundos)
-            const maxScrollHeight = chatBox.scrollHeight - chatBox.clientHeight;
+            
+            // Función para calcular la altura máxima de desplazamiento
+            const getMaxScrollHeight = () => chatBox.scrollHeight - chatBox.clientHeight;
 
             function autoScrollChat() {
-                // Verificar si hay una barra de desplazamiento visible
+                const maxScrollHeight = getMaxScrollHeight();
+                
+                // Si la caja no es visible o no hay suficiente contenido para scroll, salir.
                 if (chatBox.clientHeight === 0 || maxScrollHeight <= 0) {
                     requestAnimationFrame(autoScrollChat);
                     return;
