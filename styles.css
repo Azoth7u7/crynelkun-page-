@@ -1,11 +1,26 @@
-/* Limpia los márgenes y rellenos por defecto del navegador */
+/* ---------------------------------- */
+/* DEFINICIÓN DE VARIABLES DE COLOR */
+/* ---------------------------------- */
+:root {
+    --color-fondo-oscuro: #2e1d3a;    
+    --color-principal-claro: #bb99ee; 
+    --color-texto: #f2e9ff;
+    --color-marco-borde: #8c73b0;     
+    --color-nube: #f7f0ff;
+    --color-brillo: #e6b3ff;          
+}
+
+/* ---------------------------------- */
+/* ESTILOS DE LA PÁGINA/LIENZO (CENTRADO EN PANTALLA) */
+/* ---------------------------------- */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden; /* Evita barras de desplazamiento */
-    background-color: #000000; /* Fondo negro fuera del overlay */
+    overflow: hidden; 
+    /* Esta línea hace que el fondo de la página sea negro para el efecto de pantalla */
+    background-color: #000000; 
 }
 
 .overlay-container {
@@ -17,15 +32,118 @@ body, html {
     
     /* Define el ancho máximo (ej. Full HD) y la proporción 16:9 */
     max-width: 1920px; 
-    width: 95vw; /* Usa el 95% del ancho del viewport */
+    width: 95vw; 
     padding-bottom: 53.4375vw; /* Mantiene la proporción 16:9 de forma dinámica */
-    max-height: 90vh; /* Limita la altura si la ventana es pequeña */
+    max-height: 90vh; 
     
-    /* Asegura que el contenido CSS base esté aplicado */
+    /* Colores de fondo */
     background-color: var(--color-fondo-oscuro);
     overflow: hidden; 
     font-family: 'Arial', sans-serif;
 }
 
-/* El resto de tus estilos (.cloud, .stream-panel, .chat-box, etc.) 
-   deben ir aquí abajo */
+/* ---------------------------------- */
+/* ESTILOS DE NUBES (Simulación visual) */
+/* ---------------------------------- */
+.cloud {
+    position: absolute;
+    background: var(--color-nube);
+    border-radius: 50%;
+    filter: opacity(0.85); 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    z-index: 1; 
+}
+/* Posicionamiento de las nubes */
+.cloud.left-1 { top: 60%; left: -10%; width: 50%; height: 50%; }
+.cloud.left-2 { top: 0; left: -20%; width: 40%; height: 40%; }
+.cloud.right-1 { top: 30%; right: -10%; width: 30%; height: 30%; }
+.cloud.right-2 { bottom: -15%; right: 20%; width: 25%; height: 25%; }
+
+
+/* ---------------------------------- */
+/* ESTILOS DE MARCOS (CAJAS PRINCIPALES) */
+/* ---------------------------------- */
+.stream-panel {
+    position: absolute;
+    background-color: rgba(187, 153, 238, 0.6); 
+    border: 3px solid var(--color-marco-borde);
+    border-radius: 15px;
+    z-index: 2; 
+    
+    /* EFECTO NEÓN/BRILLO: Sombra exterior */
+    box-shadow: 0 0 15px 5px var(--color-brillo), 0 4px 10px rgba(0, 0, 0, 0.5);
+    
+    backdrop-filter: blur(2px); 
+}
+
+/* Caja principal de espera */
+.main-box {
+    top: 10%;
+    left: 5%;
+    width: 65%;
+    height: 75%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-texto);
+    font-size: 2vw;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Caja de comentarios/chat */
+.chat-box {
+    top: 50%;
+    right: 3%;
+    width: 25%;
+    height: 35%;
+    padding: 10px;
+    overflow-y: scroll;
+    font-size: 0.8vw;
+    line-height: 1.3;
+}
+
+/* Estilos específicos para el scrollbar (solo en Chrome/Edge) */
+.chat-box::-webkit-scrollbar {
+    width: 5px;
+    background-color: var(--color-fondo-oscuro);
+    border-radius: 10px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: var(--color-brillo);
+    border-radius: 10px;
+}
+
+/* Caja superior derecha (para cámara o info) */
+.info-box {
+    top: 10%;
+    right: 3%;
+    width: 25%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-texto);
+    font-size: 1.5vw;
+}
+
+/* ---------------------------------- */
+/* ESTILOS DE INTERACCIÓN/CONTENIDO */
+/* ---------------------------------- */
+.chat-message {
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+.chat-user {
+    color: #e0aaff;
+    font-weight: bold;
+}
+.blinking-text {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0.4; }
+}
