@@ -3,270 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chymel-kun</title>
+    <title>Crynel-kun: En Espera</title>
     <style>
-        /* Variables de color y estilo */
+        /* ---------------------------------- */
+        /* VARIABLES MEJORADAS - ESTÉTICA STREAM */
+        /* ---------------------------------- */
         :root {
-            --color-fondo: #0a0a14;
-            --color-primario: #8a6bb8;
-            --color-secundario: #b39ddb;
-            --color-texto: #f5f5f7;
-            --color-destacado: #d4bfff;
-            --color-borde: #5d4a7a;
-            --sombra-suave: 0 0 20px rgba(138, 107, 184, 0.3);
-            --sombra-intensa: 0 0 30px rgba(138, 107, 184, 0.5);
+            --color-fondo-oscuro: #1a1025;    /* Morado más oscuro y profundo */
+            --color-principal-claro: #a67ee3; /* Morado más vibrante */
+            --color-texto: #f0e6ff;
+            --color-marco-borde: #7a5bab;     /* Borde mejor contrastado */
+            --color-brillo: #c78fff;          /* Brillo más intenso */
+            --color-degradado-inicio: rgba(166, 126, 227, 0.8);
+            --color-degradado-fin: rgba(190, 160, 255, 0.6);
+            
+            /* Nubes mejoradas */
+            --color-nube-clara: #e6f7ff;
+            --color-nube-media: #c2e7f0;
+            --color-nube-oscura: #99d6e5;
+            --color-nube-sombra: rgba(153, 214, 229, 0.5);
+            --color-nube-brillo-borde: rgba(255, 255, 255, 0.8);
+            
+            /* Nuevos colores para mejor contraste */
+            --color-chat-user: #e0aaff;
+            --color-chat-highlight: #ff79c6;
         }
-        
-        /* Reset y estilos base */
-        * {
+
+        /* ---------------------------------- */
+        /* ESTILOS BASE MEJORADOS */
+        /* ---------------------------------- */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body, html {
             height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0612 0%, var(--color-fondo-oscuro) 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+
+        .overlay-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 1920px;
+            width: 95vw;
+            padding-bottom: 53.4375vw;
+            max-height: 90vh;
+            background: rgba(26, 16, 37, 0.9);
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 
+                0 0 50px rgba(166, 126, 227, 0.3),
+                inset 0 0 100px rgba(166, 126, 227, 0.1);
+            border: 1px solid rgba(166, 126, 227, 0.2);
+        }
+
+        /* ---------------------------------- */
+        /* NUBES MEJORADAS - MÁS CRISTALINAS */
+        /* ---------------------------------- */
+        .cloud {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+            background: linear-gradient(135deg, 
+                var(--color-nube-clara) 0%, 
+                var(--color-nube-media) 40%, 
+                var(--color-nube-oscura) 100%);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 30px 8px var(--color-nube-sombra),
+                0 0 0 3px var(--color-nube-brillo-borde);
+            backdrop-filter: blur(8px) brightness(1.2);
+            animation: moveAndFloatClouds 45s linear infinite alternate, 
+                       breatheClouds 12s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(166, 126, 227, 0.3));
+        }
+
+        .cloud-1 { top: 60%; left: -10%; width: 50%; height: 50%; animation-duration: 50s, 10s; }
+        .cloud-2 { top: 0%; left: -20%; width: 40%; height: 40%; animation-duration: 45s, 11s; animation-delay: -5s, -2s; }
+        .cloud-3 { top: 30%; right: -15%; width: 30%; height: 30%; animation-duration: 55s, 9s; animation-delay: -10s, -4s; }
+        .cloud-4 { bottom: -15%; right: 20%; width: 25%; height: 25%; animation-duration: 40s, 13s; animation-delay: -15s, -6s; }
+
+        @keyframes moveAndFloatClouds {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.8; }
+            25% { transform: translate(4%, -6%) scale(1.03) rotate(1deg); opacity: 0.9; }
+            50% { transform: translate(8%, 0) scale(1) rotate(0deg); opacity: 0.8; }
+            75% { transform: translate(4%, 6%) scale(0.97) rotate(-1deg); opacity: 0.9; }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.8; }
+        }
+
+        @keyframes breatheClouds {
+            0% { transform: scale(1); filter: opacity(0.8) brightness(1.1) hue-rotate(0deg); }
+            50% { transform: scale(1.05); filter: opacity(0.95) brightness(1.3) hue-rotate(5deg); }
+            100% { transform: scale(1); filter: opacity(0.8) brightness(1.1) hue-rotate(0deg); }
+        }
+
+        /* ---------------------------------- */
+        /* PANELES MEJORADOS - ESTILO STREAM PROFESIONAL */
+        /* ---------------------------------- */
+        .stream-panel {
+            position: absolute;
+            background: linear-gradient(145deg, 
+                var(--color-degradado-inicio), 
+                var(--color-degradado-fin));
+            border: 3px solid var(--color-marco-borde);
+            border-radius: 15px;
+            z-index: 2;
+            box-shadow: 
+                0 0 20px 8px var(--color-brillo),
+                0 4px 15px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px) brightness(1.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             overflow: hidden;
         }
-        
-        /* Contenedor principal */
-        .container {
+
+        .stream-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stream-panel:hover::before {
+            left: 100%;
+        }
+
+        .stream-panel:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 25px 10px var(--color-brillo),
+                0 6px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Caja principal de espera */
+        .main-box {
+            top: 10%;
+            left: 5%;
+            width: 65%;
+            height: 75%;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            position: relative;
-            padding: 2rem;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(138, 107, 184, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(180, 150, 230, 0.1) 0%, transparent 50%);
-        }
-        
-        /* Capas decorativas */
-        .layer {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(40px);
-            z-index: 0;
-        }
-        
-        .layer-1 {
-            width: 300px;
-            height: 300px;
-            background: var(--color-primario);
-            top: 10%;
-            left: 10%;
-            animation: float 15s ease-in-out infinite;
-        }
-        
-        .layer-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--color-secundario);
-            bottom: 15%;
-            right: 15%;
-            animation: float 12s ease-in-out infinite reverse;
-        }
-        
-        .layer-3 {
-            width: 150px;
-            height: 150px;
-            background: var(--color-destacado);
-            top: 50%;
-            left: 70%;
-            animation: float 18s ease-in-out infinite;
-        }
-        
-        /* Contenido principal */
-        .content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-        }
-        
-        /* Títulos */
-        h1 {
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
             color: var(--color-texto);
-            text-shadow: var(--sombra-suave);
+            font-size: 2.2vw;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Texto neón mejorado */
+        .neon-text {
+            color: var(--color-brillo);
+            text-shadow: 
+                0 0 5px var(--color-brillo),
+                0 0 10px var(--color-brillo),
+                0 0 20px var(--color-brillo),
+                0 0 40px var(--color-brillo),
+                0 0 80px rgba(199, 143, 255, 0.7);
+            animation: neonBlink 2s ease-in-out infinite alternate;
+            font-size: 1.3em;
+            letter-spacing: 4px;
+            margin: 15px 0;
+            font-weight: 700;
             position: relative;
         }
-        
-        h1::after {
+
+        .neon-text::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--color-primario), transparent);
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-brillo), 
+                transparent);
+            animation: neonLine 2s ease-in-out infinite alternate;
         }
-        
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin: 2rem 0 1rem;
-            color: var(--color-secundario);
-            opacity: 0.9;
+
+        @keyframes neonBlink {
+            0%, 100% { 
+                opacity: 1; 
+                text-shadow: 
+                    0 0 5px var(--color-brillo),
+                    0 0 10px var(--color-brillo),
+                    0 0 20px var(--color-brillo),
+                    0 0 40px var(--color-brillo),
+                    0 0 80px rgba(199, 143, 255, 0.7);
+            }
+            50% { 
+                opacity: 0.85; 
+                text-shadow: 
+                    0 0 3px var(--color-brillo),
+                    0 0 6px var(--color-brillo),
+                    0 0 12px var(--color-brillo),
+                    0 0 24px rgba(199, 143, 255, 0.5);
+            }
         }
-        
-        h3 {
-            font-size: 1.4rem;
-            font-weight: 300;
-            margin: 1.5rem 0 0.5rem;
-            color: var(--color-destacado);
-            opacity: 0.8;
+
+        @keyframes neonLine {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
         }
-        
-        h4 {
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin: 1rem 0 0.5rem;
-            color: var(--color-destacado);
-            opacity: 0.7;
+
+        /* Caja de chat mejorada */
+        .chat-box {
+            top: 50%;
+            right: 3%;
+            width: 25%;
+            height: 35%;
+            padding: 15px;
+            overflow-y: hidden;
+            font-size: 0.9vw;
+            line-height: 1.4;
+            background: linear-gradient(145deg, 
+                rgba(166, 126, 227, 0.85), 
+                rgba(190, 160, 255, 0.75));
+            border: 2px solid var(--color-marco-borde);
         }
-        
-        /* Mensaje en francés */
-        .french-message {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin: 3rem 0;
-            padding: 1.5rem;
-            border-left: 3px solid var(--color-primario);
-            text-align: left;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            background: rgba(138, 107, 184, 0.05);
-            border-radius: 0 10px 10px 0;
+
+        /* Mensajes de chat mejorados */
+        .chat-message {
+            margin-bottom: 8px;
+            word-wrap: break-word;
+            padding: 5px 8px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            animation: messageAppear 0.5s ease-out;
+            border-left: 2px solid transparent;
+        }
+
+        .chat-message:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 2px solid var(--color-chat-highlight);
+            transform: translateX(3px);
+        }
+
+        .chat-user {
+            color: var(--color-chat-user);
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(224, 170, 255, 0.5);
+        }
+
+        .chat-user::after {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--color-chat-user);
+            border-radius: 50%;
+            margin: 0 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scrollbar mejorado */
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+            background-color: transparent;
+        }
+
+        .chat-box::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin: 5px 0;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, 
+                var(--color-brillo), 
+                var(--color-principal-claro));
+            border-radius: 10px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, 
+                var(--color-chat-highlight), 
+                var(--color-brillo));
+        }
+
+        /* Caja de información */
+        .info-box {
+            top: 10%;
+            right: 3%;
+            width: 25%;
+            height: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-texto);
+            font-size: 1.8vw;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(199, 143, 255, 0.5);
+            background: linear-gradient(145deg, 
+                rgba(166, 126, 227, 0.9), 
+                rgba(190, 160, 255, 0.8));
             position: relative;
             overflow: hidden;
         }
-        
-        .french-message::before {
+
+        .info-box::before {
             content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Texto parpadeante mejorado */
+        .blinking-text {
+            animation: blinker 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes blinker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Efectos de partículas sutiles */
+        .particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-            z-index: -1;
+            pointer-events: none;
+            z-index: 3;
         }
-        
-        /* Elementos decorativos adicionales */
-        .decoration {
+
+        .particle {
             position: absolute;
-            z-index: 5;
-        }
-        
-        .decoration-1 {
-            top: 20%;
-            right: 15%;
             width: 2px;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, var(--color-primario), transparent);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        .decoration-2 {
-            bottom: 25%;
-            left: 10%;
-            width: 100px;
             height: 2px;
-            background: linear-gradient(to right, transparent, var(--color-secundario), transparent);
-            animation: pulse 5s ease-in-out infinite;
+            background: var(--color-brillo);
+            border-radius: 50%;
+            animation: floatParticle 8s infinite linear;
+            opacity: 0;
         }
-        
-        /* Animaciones */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
             }
-            25% {
-                transform: translateY(-20px) translateX(10px);
-            }
-            50% {
-                transform: translateY(0) translateX(20px);
-            }
-            75% {
-                transform: translateY(20px) translateX(10px);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.3;
-            }
-            50% {
+            10% {
                 opacity: 0.7;
             }
-        }
-        
-        /* Efectos de brillo en texto */
-        .glow {
-            text-shadow: 0 0 5px rgba(180, 150, 230, 0.5),
-                         0 0 10px rgba(180, 150, 230, 0.3),
-                         0 0 15px rgba(180, 150, 230, 0.2);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            90% {
+                opacity: 0.3;
             }
-            
-            h2 {
-                font-size: 1.4rem;
-            }
-            
-            h3 {
-                font-size: 1.2rem;
-            }
-            
-            h4 {
-                font-size: 1rem;
-            }
-            
-            .french-message {
-                font-size: 1.2rem;
+            100% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Capas decorativas -->
-        <div class="layer layer-1"></div>
-        <div class="layer layer-2"></div>
-        <div class="layer layer-3"></div>
+    <div class="overlay-container">
+        <!-- Efectos de partículas -->
+        <div class="particles" id="particles"></div>
         
-        <!-- Elementos decorativos -->
-        <div class="decoration decoration-1"></div>
-        <div class="decoration decoration-2"></div>
+        <!-- Nubes cristalizadas -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
         
-        <!-- Contenido principal -->
-        <div class="content">
-            <h1 class="glow">Chymel-kun</h1>
-            
-            <h2>图层</h2>
-            <h3>图层</h3>
-            <h4>图层</h4>
-            
-            <div class="french-message">
-                <strong>Espace un moment de...</strong>
-            </div>
+        <!-- Panel principal -->
+        <div class="stream-panel main-box">
+            <span class="blinking-text">
+                Esperando la conexión...<br>
+                <span class="neon-text">Crynel-kun</span> volverá pronto.
+            </span>
+        </div>
+        
+        <!-- Panel de información -->
+        <div class="stream-panel info-box">
+            PRÓXIMAMENTE
+        </div>
+
+        <!-- Panel de chat -->
+        <div class="stream-panel chat-box">
+            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
+            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
+            <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
+            <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
+            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Dejen un comentario! ¡Es un chat real! (bueno, simulado) 😉</div>
+            <div class="chat-message"><span class="chat-user">@UserX:</span> Genial.</div>
+            <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
+            <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
+            <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
+            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
+            <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
+            <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
+            <div class="chat-message"><span class="chat-user">@Newbie:</span> ¿Dónde puedo ver más?</div>
+            <div class="chat-message"><span class="chat-user">@LilaLover:</span> ¡La espera es lo peor! jajaja</div>
+            <div class="chat-message"><span class="chat-user">@UserA:</span> Hola a todos.</div>
+            <div class="chat-message"><span class="chat-user">@UserB:</span> Me gusta el ambiente.</div>
+            <div class="chat-message"><span class="chat-user">@Mod_Bot:</span> Recuerden las reglas del chat.</div>
+            <div class="chat-message"><span class="chat-user">@CrynelFan:</span> ¡Ya quiero ver la página final!</div>
+            <div class="chat-message"><span class="chat-user">@Random:</span> ¿Hay emotes?</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> Próximamente. ¡Estén atentos!</div>
+            <div class="chat-message"><span class="chat-user">@Chill:</span> Relax, gente. Todo a su tiempo.</div>
+            <div class="chat-message"><span class="chat-user">@Designer:</span> El diseño es muy top.</div>
+            <div class="chat-message"><span class="chat-user">@Coder:</span> Me gusta cómo está hecho.</div>
+            <div class="chat-message"><span class="chat-user">@FinalFan:</span> ¡Éxito!</div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatBox = document.querySelector('.chat-box');
+            let scrollDirection = 1;
+            const scrollSpeed = 0.5;
+            const pauseTime = 3000;
+            
+            const getMaxScrollHeight = () => chatBox.scrollHeight - chatBox.clientHeight;
+
+            function autoScrollChat() {
+                const maxScrollHeight = getMaxScrollHeight();
+                
+                if (chatBox.clientHeight === 0 || maxScrollHeight <= 0) {
+                    requestAnimationFrame(autoScrollChat);
+                    return;
+                }
+
+                chatBox.scrollTop += scrollDirection * scrollSpeed;
+
+                if (chatBox.scrollTop >= maxScrollHeight && scrollDirection === 1) {
+                    scrollDirection = -1;
+                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime);
+                    return;
+                } 
+                else if (chatBox.scrollTop <= 0 && scrollDirection === -1) {
+                    scrollDirection = 1;
+                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime);
+                    return;
+                }
+                
+                requestAnimationFrame(autoScrollChat);
+            }
+
+            // Iniciar el scroll automático
+            requestAnimationFrame(autoScrollChat);
+
+            // Crear partículas dinámicas
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posición aleatoria
+                particle.style.left = Math.random() * 100 + 'vw';
+                
+                // Tamaño y opacidad aleatorios
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                // Animación con delay aleatorio
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
 </body>
 </html>
