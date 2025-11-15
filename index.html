@@ -4,120 +4,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crynel-kun: En Espera</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ---------------------------------- */
-        /* VARIABLES MEJORADAS - ESTÉTICA STREAM */
+        /* VARIABLES Y RESET MEJORADOS */
         /* ---------------------------------- */
         :root {
-            --color-fondo-oscuro: #1a1025;    /* Morado más oscuro y profundo */
-            --color-principal-claro: #a67ee3; /* Morado más vibrante */
-            --color-texto: #f0e6ff;
-            --color-marco-borde: #7a5bab;     /* Borde mejor contrastado */
-            --color-brillo: #c78fff;          /* Brillo más intenso */
-            --color-degradado-inicio: rgba(166, 126, 227, 0.8);
-            --color-degradado-fin: rgba(190, 160, 255, 0.6);
-            
-            /* Nubes mejoradas */
-            --color-nube-clara: #e6f7ff;
-            --color-nube-media: #c2e7f0;
-            --color-nube-oscura: #99d6e5;
-            --color-nube-sombra: rgba(153, 214, 229, 0.5);
-            --color-nube-brillo-borde: rgba(255, 255, 255, 0.8);
-            
-            /* Nuevos colores para mejor contraste */
-            --color-chat-user: #e0aaff;
-            --color-chat-highlight: #ff79c6;
+            --color-fondo: #0f0a1a;
+            --color-fondo-gradiente-1: #1a0f2e;
+            --color-fondo-gradiente-2: #2d1b4e;
+            --color-principal: #9d4edd;
+            --color-secundario: #c77dff;
+            --color-acento: #e0aaff;
+            --color-texto: #f8f7ff;
+            --color-borde: #7b2cbf;
+            --color-sombra: rgba(157, 78, 221, 0.3);
+            --color-brillo: rgba(199, 125, 255, 0.8);
         }
 
-        /* ---------------------------------- */
-        /* ESTILOS BASE MEJORADOS */
-        /* ---------------------------------- */
-        body, html {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
             height: 100%;
             width: 100%;
             overflow: hidden;
-            background: linear-gradient(135deg, #0a0612 0%, var(--color-fondo-oscuro) 100%);
-            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--color-fondo);
+            color: var(--color-texto);
         }
 
+        /* ---------------------------------- */
+        /* FONDO MEJORADO - ATMOSFÉRICO */
+        /* ---------------------------------- */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--color-fondo-gradiente-1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--color-fondo-gradiente-2) 0%, transparent 50%),
+                linear-gradient(135deg, var(--color-fondo) 0%, #1a0f2e 100%);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* ---------------------------------- */
+        /* NUBES MEJORADAS - REALISTAS Y ESPONJOSAS */
+        /* ---------------------------------- */
+        .clouds-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0.4) 60%, transparent 80%),
+                radial-gradient(circle at 70% 40%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 20%, rgba(255,255,255,0.3) 50%, transparent 70%),
+                radial-gradient(circle at 40% 70%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(15px);
+            opacity: 0.7;
+            box-shadow: 
+                0 0 40px 20px rgba(255, 255, 255, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Nubes individuales con diferentes tamaños y animaciones */
+        .cloud-1 {
+            width: 300px;
+            height: 120px;
+            top: 10%;
+            left: -400px;
+            animation: floatCloud 45s linear infinite;
+            animation-delay: 0s;
+        }
+
+        .cloud-2 {
+            width: 400px;
+            height: 150px;
+            top: 25%;
+            left: -500px;
+            animation: floatCloud 60s linear infinite;
+            animation-delay: 10s;
+        }
+
+        .cloud-3 {
+            width: 250px;
+            height: 100px;
+            top: 40%;
+            left: -350px;
+            animation: floatCloud 50s linear infinite;
+            animation-delay: 5s;
+        }
+
+        .cloud-4 {
+            width: 350px;
+            height: 130px;
+            top: 60%;
+            left: -450px;
+            animation: floatCloud 55s linear infinite;
+            animation-delay: 15s;
+        }
+
+        .cloud-5 {
+            width: 200px;
+            height: 80px;
+            top: 75%;
+            left: -300px;
+            animation: floatCloud 40s linear infinite;
+            animation-delay: 20s;
+        }
+
+        @keyframes floatCloud {
+            0% {
+                transform: translateX(0) translateY(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateX(calc(100vw + 500px)) translateY(-20px) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* ---------------------------------- */
+        /* HEADER CON NOMBRE DEL CANAL */
+        /* ---------------------------------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 10, 26, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .channel-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-principal), var(--color-acento));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px var(--color-sombra);
+            letter-spacing: 2px;
+        }
+
+        .channel-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: var(--color-acento);
+        }
+
+        .live-indicator {
+            width: 12px;
+            height: 12px;
+            background: #ff4757;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ---------------------------------- */
+        /* CONTENEDOR PRINCIPAL */
+        /* ---------------------------------- */
         .overlay-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 1920px;
-            width: 95vw;
-            padding-bottom: 53.4375vw;
-            max-height: 90vh;
-            background: rgba(26, 16, 37, 0.9);
-            overflow: hidden;
+            width: 90%;
+            max-width: 1400px;
+            height: 75vh;
+            background: rgba(26, 15, 46, 0.6);
             border-radius: 20px;
+            overflow: hidden;
+            z-index: 5;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 78, 221, 0.2);
             box-shadow: 
-                0 0 50px rgba(166, 126, 227, 0.3),
-                inset 0 0 100px rgba(166, 126, 227, 0.1);
-            border: 1px solid rgba(166, 126, 227, 0.2);
+                0 0 50px rgba(157, 78, 221, 0.2),
+                inset 0 0 50px rgba(157, 78, 221, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            grid-template-rows: 1fr auto;
+            gap: 20px;
+            padding: 20px;
         }
 
         /* ---------------------------------- */
-        /* NUBES MEJORADAS - MÁS CRISTALINAS */
-        /* ---------------------------------- */
-        .cloud {
-            position: absolute;
-            border-radius: 50%;
-            z-index: 1;
-            background: linear-gradient(135deg, 
-                var(--color-nube-clara) 0%, 
-                var(--color-nube-media) 40%, 
-                var(--color-nube-oscura) 100%);
-            box-shadow: 
-                inset 0 0 20px rgba(255, 255, 255, 0.6),
-                0 0 30px 8px var(--color-nube-sombra),
-                0 0 0 3px var(--color-nube-brillo-borde);
-            backdrop-filter: blur(8px) brightness(1.2);
-            animation: moveAndFloatClouds 45s linear infinite alternate, 
-                       breatheClouds 12s ease-in-out infinite alternate;
-            filter: drop-shadow(0 0 10px rgba(166, 126, 227, 0.3));
-        }
-
-        .cloud-1 { top: 60%; left: -10%; width: 50%; height: 50%; animation-duration: 50s, 10s; }
-        .cloud-2 { top: 0%; left: -20%; width: 40%; height: 40%; animation-duration: 45s, 11s; animation-delay: -5s, -2s; }
-        .cloud-3 { top: 30%; right: -15%; width: 30%; height: 30%; animation-duration: 55s, 9s; animation-delay: -10s, -4s; }
-        .cloud-4 { bottom: -15%; right: 20%; width: 25%; height: 25%; animation-duration: 40s, 13s; animation-delay: -15s, -6s; }
-
-        @keyframes moveAndFloatClouds {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.8; }
-            25% { transform: translate(4%, -6%) scale(1.03) rotate(1deg); opacity: 0.9; }
-            50% { transform: translate(8%, 0) scale(1) rotate(0deg); opacity: 0.8; }
-            75% { transform: translate(4%, 6%) scale(0.97) rotate(-1deg); opacity: 0.9; }
-            100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.8; }
-        }
-
-        @keyframes breatheClouds {
-            0% { transform: scale(1); filter: opacity(0.8) brightness(1.1) hue-rotate(0deg); }
-            50% { transform: scale(1.05); filter: opacity(0.95) brightness(1.3) hue-rotate(5deg); }
-            100% { transform: scale(1); filter: opacity(0.8) brightness(1.1) hue-rotate(0deg); }
-        }
-
-        /* ---------------------------------- */
-        /* PANELES MEJORADOS - ESTILO STREAM PROFESIONAL */
+        /* PANELES PRINCIPALES */
         /* ---------------------------------- */
         .stream-panel {
-            position: absolute;
-            background: linear-gradient(145deg, 
-                var(--color-degradado-inicio), 
-                var(--color-degradado-fin));
-            border: 3px solid var(--color-marco-borde);
+            background: rgba(45, 27, 78, 0.7);
             border-radius: 15px;
-            z-index: 2;
+            border: 1px solid var(--color-borde);
             box-shadow: 
-                0 0 20px 8px var(--color-brillo),
-                0 4px 15px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px) brightness(1.1);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                0 0 20px var(--color-sombra),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
             overflow: hidden;
+            position: relative;
         }
 
         .stream-panel::before {
@@ -129,135 +267,134 @@
             height: 100%;
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.05), 
                 transparent);
-            transition: left 0.6s ease;
+            transition: left 0.7s ease;
         }
 
         .stream-panel:hover::before {
             left: 100%;
         }
 
-        .stream-panel:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 0 25px 10px var(--color-brillo),
-                0 6px 20px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Caja principal de espera */
+        /* Panel principal */
         .main-box {
-            top: 10%;
-            left: 5%;
-            width: 65%;
-            height: 75%;
-            padding: 30px;
+            grid-column: 1;
+            grid-row: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: var(--color-texto);
-            font-size: 2.2vw;
+            padding: 40px;
             text-align: center;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* Texto neón mejorado */
-        .neon-text {
-            color: var(--color-brillo);
+        .waiting-text {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: var(--color-texto);
+            text-shadow: 0 0 10px var(--color-sombra);
+        }
+
+        .channel-brand {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-principal), var(--color-secundario), var(--color-acento));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             text-shadow: 
-                0 0 5px var(--color-brillo),
                 0 0 10px var(--color-brillo),
                 0 0 20px var(--color-brillo),
-                0 0 40px var(--color-brillo),
-                0 0 80px rgba(199, 143, 255, 0.7);
-            animation: neonBlink 2s ease-in-out infinite alternate;
-            font-size: 1.3em;
-            letter-spacing: 4px;
-            margin: 15px 0;
-            font-weight: 700;
-            position: relative;
+                0 0 40px var(--color-sombra);
+            margin: 20px 0;
+            letter-spacing: 3px;
+            animation: glow 3s ease-in-out infinite alternate;
         }
 
-        .neon-text::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--color-brillo), 
-                transparent);
-            animation: neonLine 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes neonBlink {
-            0%, 100% { 
-                opacity: 1; 
+        @keyframes glow {
+            from {
                 text-shadow: 
-                    0 0 5px var(--color-brillo),
                     0 0 10px var(--color-brillo),
                     0 0 20px var(--color-brillo),
-                    0 0 40px var(--color-brillo),
-                    0 0 80px rgba(199, 143, 255, 0.7);
+                    0 0 40px var(--color-sombra);
             }
-            50% { 
-                opacity: 0.85; 
+            to {
                 text-shadow: 
-                    0 0 3px var(--color-brillo),
-                    0 0 6px var(--color-brillo),
-                    0 0 12px var(--color-brillo),
-                    0 0 24px rgba(199, 143, 255, 0.5);
+                    0 0 15px var(--color-brillo),
+                    0 0 30px var(--color-brillo),
+                    0 0 60px var(--color-sombra);
             }
         }
 
-        @keyframes neonLine {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+        .return-text {
+            font-size: 1.8rem;
+            color: var(--color-acento);
+            font-weight: 300;
+            margin-top: 20px;
         }
 
-        /* Caja de chat mejorada */
+        /* Panel de información */
+        .info-box {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .coming-soon {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-acento);
+            text-shadow: 0 0 15px var(--color-brillo);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            color: var(--color-texto);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Panel de chat */
         .chat-box {
-            top: 50%;
-            right: 3%;
-            width: 25%;
-            height: 35%;
+            grid-column: 1 / span 2;
+            grid-row: 2;
+            height: 200px;
             padding: 15px;
-            overflow-y: hidden;
-            font-size: 0.9vw;
-            line-height: 1.4;
-            background: linear-gradient(145deg, 
-                rgba(166, 126, 227, 0.85), 
-                rgba(190, 160, 255, 0.75));
-            border: 2px solid var(--color-marco-borde);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        /* Mensajes de chat mejorados */
+        /* ---------------------------------- */
+        /* ESTILOS DE CHAT MEJORADOS */
+        /* ---------------------------------- */
         .chat-message {
-            margin-bottom: 8px;
-            word-wrap: break-word;
-            padding: 5px 8px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
+            animation: messageSlide 0.5s ease-out;
+            border-left: 3px solid transparent;
             transition: all 0.3s ease;
-            animation: messageAppear 0.5s ease-out;
-            border-left: 2px solid transparent;
         }
 
         .chat-message:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-left: 2px solid var(--color-chat-highlight);
-            transform: translateX(3px);
+            border-left: 3px solid var(--color-secundario);
+            transform: translateX(5px);
         }
 
         .chat-user {
-            color: var(--color-chat-user);
+            color: var(--color-acento);
             font-weight: 600;
-            text-shadow: 0 0 5px rgba(224, 170, 255, 0.5);
+            margin-right: 8px;
         }
 
         .chat-user::after {
@@ -265,13 +402,13 @@
             display: inline-block;
             width: 4px;
             height: 4px;
-            background: var(--color-chat-user);
+            background: var(--color-acento);
             border-radius: 50%;
             margin: 0 8px;
             vertical-align: middle;
         }
 
-        @keyframes messageAppear {
+        @keyframes messageSlide {
             from {
                 opacity: 0;
                 transform: translateY(10px);
@@ -282,144 +419,165 @@
             }
         }
 
-        /* Scrollbar mejorado */
+        /* Scrollbar personalizado */
         .chat-box::-webkit-scrollbar {
             width: 6px;
-            background-color: transparent;
         }
 
         .chat-box::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            margin: 5px 0;
         }
 
         .chat-box::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, 
-                var(--color-brillo), 
-                var(--color-principal-claro));
+            background: linear-gradient(to bottom, var(--color-principal), var(--color-secundario));
             border-radius: 10px;
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         }
 
-        .chat-box::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, 
-                var(--color-chat-highlight), 
-                var(--color-brillo));
-        }
-
-        /* Caja de información */
-        .info-box {
-            top: 10%;
-            right: 3%;
-            width: 25%;
-            height: 35%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--color-texto);
-            font-size: 1.8vw;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(199, 143, 255, 0.5);
-            background: linear-gradient(145deg, 
-                rgba(166, 126, 227, 0.9), 
-                rgba(190, 160, 255, 0.8));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.1), 
-                transparent);
-            animation: shine 3s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        /* Texto parpadeante mejorado */
-        .blinking-text {
-            animation: blinker 2s ease-in-out infinite;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        @keyframes blinker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* Efectos de partículas sutiles */
-        .particles {
-            position: absolute;
+        /* ---------------------------------- */
+        /* ELEMENTOS DECORATIVOS ADICIONALES */
+        /* ---------------------------------- */
+        .floating-elements {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 3;
+            z-index: 1;
         }
 
-        .particle {
+        .floating-element {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--color-brillo);
-            border-radius: 50%;
-            animation: floatParticle 8s infinite linear;
-            opacity: 0;
+            opacity: 0.1;
+            animation: floatElement 20s infinite linear;
         }
 
-        @keyframes floatParticle {
+        .element-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 3rem;
+            color: var(--color-principal);
+            animation-duration: 25s;
+        }
+
+        .element-2 {
+            top: 60%;
+            left: 80%;
+            font-size: 2.5rem;
+            color: var(--color-secundario);
+            animation-duration: 30s;
+            animation-delay: 5s;
+        }
+
+        .element-3 {
+            top: 40%;
+            left: 85%;
+            font-size: 2rem;
+            color: var(--color-acento);
+            animation-duration: 35s;
+            animation-delay: 10s;
+        }
+
+        @keyframes floatElement {
             0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
             }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.3;
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.2;
             }
             100% {
-                transform: translateY(-100px) translateX(20px);
-                opacity: 0;
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
+        /* ---------------------------------- */
+        /* RESPONSIVE */
+        /* ---------------------------------- */
+        @media (max-width: 1024px) {
+            .overlay-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr auto auto;
+                height: 85vh;
+            }
+            
+            .main-box {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            
+            .info-box {
+                grid-column: 1;
+                grid-row: 2;
+                height: 150px;
+            }
+            
+            .chat-box {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            
+            .channel-name {
+                font-size: 1.8rem;
+            }
+            
+            .channel-brand {
+                font-size: 3rem;
+            }
+            
+            .waiting-text, .return-text {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="overlay-container">
-        <!-- Efectos de partículas -->
-        <div class="particles" id="particles"></div>
-        
-        <!-- Nubes cristalizadas -->
+    <!-- Fondo atmosférico -->
+    <div class="background">
+        <div class="stars" id="stars"></div>
+    </div>
+    
+    <!-- Nubes realistas -->
+    <div class="clouds-container">
         <div class="cloud cloud-1"></div>
         <div class="cloud cloud-2"></div>
         <div class="cloud cloud-3"></div>
         <div class="cloud cloud-4"></div>
-        
+        <div class="cloud cloud-5"></div>
+    </div>
+    
+    <!-- Elementos flotantes decorativos -->
+    <div class="floating-elements">
+        <div class="floating-element element-1">✦</div>
+        <div class="floating-element element-2">❖</div>
+        <div class="floating-element element-3">♡</div>
+    </div>
+    
+    <!-- Header con nombre del canal -->
+    <header class="header">
+        <div class="channel-name">Crynel-kun</div>
+        <div class="channel-status">
+            <div class="live-indicator"></div>
+            <span>EN ESPERA • PRÓXIMAMENTE</span>
+        </div>
+    </header>
+    
+    <!-- Contenedor principal -->
+    <div class="overlay-container">
         <!-- Panel principal -->
         <div class="stream-panel main-box">
-            <span class="blinking-text">
-                Esperando la conexión...<br>
-                <span class="neon-text">Crynel-kun</span> volverá pronto.
-            </span>
+            <div class="waiting-text">Esperando la conexión...</div>
+            <div class="channel-brand">Crynel-kun</div>
+            <div class="return-text">volverá pronto</div>
         </div>
         
         <!-- Panel de información -->
         <div class="stream-panel info-box">
-            PRÓXIMAMENTE
+            <div class="coming-soon">PRÓXIMAMENTE</div>
+            <div class="countdown">Nuevo contenido en preparación</div>
         </div>
 
         <!-- Panel de chat -->
@@ -439,32 +597,44 @@
             <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
             <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
             <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
-            <div class="chat-message"><span class="chat-user">@Newbie:</span> ¿Dónde puedo ver más?</div>
-            <div class="chat-message"><span class="chat-user">@LilaLover:</span> ¡La espera es lo peor! jajaja</div>
-            <div class="chat-message"><span class="chat-user">@UserA:</span> Hola a todos.</div>
-            <div class="chat-message"><span class="chat-user">@UserB:</span> Me gusta el ambiente.</div>
-            <div class="chat-message"><span class="chat-user">@Mod_Bot:</span> Recuerden las reglas del chat.</div>
-            <div class="chat-message"><span class="chat-user">@CrynelFan:</span> ¡Ya quiero ver la página final!</div>
-            <div class="chat-message"><span class="chat-user">@Random:</span> ¿Hay emotes?</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> Próximamente. ¡Estén atentos!</div>
-            <div class="chat-message"><span class="chat-user">@Chill:</span> Relax, gente. Todo a su tiempo.</div>
-            <div class="chat-message"><span class="chat-user">@Designer:</span> El diseño es muy top.</div>
-            <div class="chat-message"><span class="chat-user">@Coder:</span> Me gusta cómo está hecho.</div>
-            <div class="chat-message"><span class="chat-user">@FinalFan:</span> ¡Éxito!</div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Crear estrellas dinámicas
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Posición aleatoria
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Opacidad y animación aleatorias
+                star.style.opacity = Math.random() * 0.7 + 0.1;
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Scroll automático del chat
             const chatBox = document.querySelector('.chat-box');
             let scrollDirection = 1;
             const scrollSpeed = 0.5;
             const pauseTime = 3000;
             
-            const getMaxScrollHeight = () => chatBox.scrollHeight - chatBox.clientHeight;
-
             function autoScrollChat() {
-                const maxScrollHeight = getMaxScrollHeight();
+                const maxScrollHeight = chatBox.scrollHeight - chatBox.clientHeight;
                 
                 if (chatBox.clientHeight === 0 || maxScrollHeight <= 0) {
                     requestAnimationFrame(autoScrollChat);
@@ -489,30 +659,6 @@
 
             // Iniciar el scroll automático
             requestAnimationFrame(autoScrollChat);
-
-            // Crear partículas dinámicas
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Posición aleatoria
-                particle.style.left = Math.random() * 100 + 'vw';
-                
-                // Tamaño y opacidad aleatorios
-                const size = Math.random() * 3 + 1;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.opacity = Math.random() * 0.5 + 0.2;
-                
-                // Animación con delay aleatorio
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                
-                particlesContainer.appendChild(particle);
-            }
         });
     </script>
 </body>
