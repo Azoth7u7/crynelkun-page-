@@ -6,14 +6,20 @@
     --color-principal-claro: #bb99ee; /* Morado lila de las cajas/bordes */
     --color-texto: #f2e9ff;
     --color-marco-borde: #8c73b0;     /* Borde oscuro de las cajas */
-    --color-nube: #f7f0ff;
     --color-brillo: #e6b3ff;          /* Color del brillo neón */
-    --color-degradado-inicio: rgba(187, 153, 238, 0.7); /* Ligeramente más oscuro al inicio */
-    --color-degradado-fin: rgba(220, 190, 255, 0.5);   /* Ligeramente más claro al final */
+    --color-degradado-inicio: rgba(187, 153, 238, 0.7); /* Degradado de paneles */
+    --color-degradado-fin: rgba(220, 190, 255, 0.5);   /* Degradado de paneles */
+    
+    /* --- VARIABLES ESPECÍFICAS PARA NUBES CRISTALIZADAS --- */
+    --color-nube-clara: #e0f2f7;      /* Base clara para las nubes */
+    --color-nube-media: #c6e2e9;      /* Tono medio pastel */
+    --color-nube-oscura: #aad4de;     /* Tono más oscuro/azulado pastel */
+    --color-nube-sombra: rgba(170, 212, 222, 0.4); /* Sombra sutil de la nube */
+    --color-nube-brillo-borde: rgba(255, 255, 255, 0.7); /* Borde blanco brillante */
 }
 
 /* ---------------------------------- */
-/* ESTILOS DE LA PÁGINA/LIENZO (CENTRADO EN PANTALLA) */
+/* ESTILOS BASE DE LA PÁGINA (CENTRADO EN PANTALLA) */
 /* ---------------------------------- */
 body, html {
     margin: 0;
@@ -31,13 +37,13 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* Define el ancho máximo y la proporción 16:9 de forma dinámica */
+    /* Define el ancho y la proporción 16:9 de forma dinámica */
     max-width: 1920px; 
     width: 95vw; 
     padding-bottom: 53.4375vw; 
     max-height: 90vh; 
     
-    /* Colores de fondo */
+    /* Colores y estilo de fondo */
     background-color: var(--color-fondo-oscuro);
     overflow: hidden; 
     font-family: 'Arial', sans-serif;
@@ -46,29 +52,49 @@ body, html {
 }
 
 /* ---------------------------------- */
-/* ESTILOS Y ANIMACIONES DE NUBES */
+/* ESTILOS Y ANIMACIONES DE NUBES CRISTALIZADAS */
 /* ---------------------------------- */
 .cloud {
     position: absolute;
-    background: var(--color-nube);
     border-radius: 50%;
-    filter: opacity(0.8); 
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     z-index: 1; 
-    animation: moveClouds 30s linear infinite alternate; /* Animación de movimiento */
+    
+    /* Degradado tornasol pastel */
+    background: linear-gradient(135deg, var(--color-nube-clara) 0%, var(--color-nube-media) 50%, var(--color-nube-oscura) 100%);
+    
+    /* Efecto cristalizado/metálico */
+    box-shadow: 
+        inset 0 0 10px rgba(255, 255, 255, 0.5), /* Brillo interno sutil */
+        0 0 20px 5px var(--color-nube-sombra),  /* Sombra externa para volumen */
+        0 0 0 2px var(--color-nube-brillo-borde); /* Borde sutil brillante */
+        
+    backdrop-filter: blur(5px) brightness(1.1); /* Efecto de desenfoque y brillo para "cristal" */
+    
+    /* Animación combinada de movimiento, escala y opacidad */
+    animation: moveAndFloatClouds 40s linear infinite alternate, 
+               breatheClouds 10s ease-in-out infinite alternate;
 }
 
 /* Posicionamiento y tamaño de las nubes individuales */
-.cloud-1 { top: 60%; left: -10%; width: 50%; height: 50%; animation-duration: 35s; animation-delay: 0s; }
-.cloud-2 { top: 0%; left: -20%; width: 40%; height: 40%; animation-duration: 30s; animation-delay: -5s; }
-.cloud-3 { top: 30%; right: -15%; width: 30%; height: 30%; animation-duration: 40s; animation-delay: -10s; }
-.cloud-4 { bottom: -15%; right: 20%; width: 25%; height: 25%; animation-duration: 25s; animation-delay: -15s; }
+.cloud-1 { top: 60%; left: -10%; width: 50%; height: 50%; animation-duration: 45s, 8s; animation-delay: 0s, 0s; }
+.cloud-2 { top: 0%; left: -20%; width: 40%; height: 40%; animation-duration: 40s, 9s; animation-delay: -5s, -3s; }
+.cloud-3 { top: 30%; right: -15%; width: 30%; height: 30%; animation-duration: 50s, 7s; animation-delay: -10s, -6s; }
+.cloud-4 { bottom: -15%; right: 20%; width: 25%; height: 25%; animation-duration: 35s, 11s; animation-delay: -15s, -9s; }
 
-/* Keyframes para la animación de las nubes */
-@keyframes moveClouds {
-    0% { transform: translateX(0); opacity: 0.8; }
-    50% { transform: translateX(10%); opacity: 0.9; }
-    100% { transform: translateX(0); opacity: 0.8; }
+/* Keyframes para la animación de movimiento */
+@keyframes moveAndFloatClouds {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+    25% { transform: translate(5%, -5%) scale(1.02); opacity: 0.8; }
+    50% { transform: translate(10%, 0) scale(1); opacity: 0.7; }
+    75% { transform: translate(5%, 5%) scale(0.98); opacity: 0.8; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+}
+
+/* Keyframes para la animación de "respirar" */
+@keyframes breatheClouds {
+    0% { transform: scale(1); filter: opacity(0.8) brightness(1.1); }
+    50% { transform: scale(1.02); filter: opacity(0.9) brightness(1.2); }
+    100% { transform: scale(1); filter: opacity(0.8) brightness(1.1); }
 }
 
 
