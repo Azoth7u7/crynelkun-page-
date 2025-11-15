@@ -3,99 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crynel-kun: En Espera</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Chymel-kun</title>
+    <style>
+        /* Variables de color y estilo */
+        :root {
+            --color-fondo: #0a0a14;
+            --color-primario: #8a6bb8;
+            --color-secundario: #b39ddb;
+            --color-texto: #f5f5f7;
+            --color-destacado: #d4bfff;
+            --color-borde: #5d4a7a;
+            --sombra-suave: 0 0 20px rgba(138, 107, 184, 0.3);
+            --sombra-intensa: 0 0 30px rgba(138, 107, 184, 0.5);
+        }
+        
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            overflow: hidden;
+        }
+        
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            padding: 2rem;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 107, 184, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(180, 150, 230, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Capas decorativas */
+        .layer {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(40px);
+            z-index: 0;
+        }
+        
+        .layer-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--color-primario);
+            top: 10%;
+            left: 10%;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .layer-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--color-secundario);
+            bottom: 15%;
+            right: 15%;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+        
+        .layer-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--color-destacado);
+            top: 50%;
+            left: 70%;
+            animation: float 18s ease-in-out infinite;
+        }
+        
+        /* Contenido principal */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        /* Títulos */
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            color: var(--color-texto);
+            text-shadow: var(--sombra-suave);
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-primario), transparent);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin: 2rem 0 1rem;
+            color: var(--color-secundario);
+            opacity: 0.9;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--color-destacado);
+            opacity: 0.8;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin: 1rem 0 0.5rem;
+            color: var(--color-destacado);
+            opacity: 0.7;
+        }
+        
+        /* Mensaje en francés */
+        .french-message {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin: 3rem 0;
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-primario);
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(138, 107, 184, 0.05);
+            border-radius: 0 10px 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .french-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            z-index: -1;
+        }
+        
+        /* Elementos decorativos adicionales */
+        .decoration {
+            position: absolute;
+            z-index: 5;
+        }
+        
+        .decoration-1 {
+            top: 20%;
+            right: 15%;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--color-primario), transparent);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .decoration-2 {
+            bottom: 25%;
+            left: 10%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--color-secundario), transparent);
+            animation: pulse 5s ease-in-out infinite;
+        }
+        
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(0) translateX(20px);
+            }
+            75% {
+                transform: translateY(20px) translateX(10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        
+        /* Efectos de brillo en texto */
+        .glow {
+            text-shadow: 0 0 5px rgba(180, 150, 230, 0.5),
+                         0 0 10px rgba(180, 150, 230, 0.3),
+                         0 0 15px rgba(180, 150, 230, 0.2);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            h4 {
+                font-size: 1rem;
+            }
+            
+            .french-message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <div class="overlay-container">
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="cloud cloud-3"></div>
-        <div class="cloud cloud-4"></div>
+    <div class="container">
+        <!-- Capas decorativas -->
+        <div class="layer layer-1"></div>
+        <div class="layer layer-2"></div>
+        <div class="layer layer-3"></div>
         
-        <div class="stream-panel main-box">
-            <span class="blinking-text">
-                Esperando la conexión...<br>
-                <span class="neon-text">Crynel-kun</span> volverá pronto.
-            </span>
-        </div>
+        <!-- Elementos decorativos -->
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
         
-        <div class="stream-panel info-box">
-            PRÓXIMAMENTE
-        </div>
-
-        <div class="stream-panel chat-box">
-            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
-            <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
-            <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Dejen un comentario! ¡Es un chat real! (bueno, simulado) 😉</div>
-            <div class="chat-message"><span class="chat-user">@UserX:</span> Genial.</div>
-            <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
-            <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
-            <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
-            <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
-            <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
-            <div class="chat-message"><span class="chat-user">@Newbie:</span> ¿Dónde puedo ver más?</div>
-            <div class="chat-message"><span class="chat-user">@LilaLover:</span> ¡La espera es lo peor! jajaja</div>
-            <div class="chat-message"><span class="chat-user">@UserA:</span> Hola a todos.</div>
-            <div class="chat-message"><span class="chat-user">@UserB:</span> Me gusta el ambiente.</div>
-            <div class="chat-message"><span class="chat-user">@Mod_Bot:</span> Recuerden las reglas del chat.</div>
-            <div class="chat-message"><span class="chat-user">@CrynelFan:</span> ¡Ya quiero ver la página final!</div>
-            <div class="chat-message"><span class="chat-user">@Random:</span> ¿Hay emotes?</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> Próximamente. ¡Estén atentos!</div>
-            <div class="chat-message"><span class="chat-user">@Chill:</span> Relax, gente. Todo a su tiempo.</div>
-            <div class="chat-message"><span class="chat-user">@Designer:</span> El diseño es muy top.</div>
-            <div class="chat-message"><span class="chat-user">@Coder:</span> Me gusta cómo está hecho.</div>
-            <div class="chat-message"><span class="chat-user">@FinalFan:</span> ¡Éxito!</div>
+        <!-- Contenido principal -->
+        <div class="content">
+            <h1 class="glow">Chymel-kun</h1>
+            
+            <h2>图层</h2>
+            <h3>图层</h3>
+            <h4>图层</h4>
+            
+            <div class="french-message">
+                <strong>Espace un moment de...</strong>
+            </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatBox = document.querySelector('.chat-box');
-            let scrollDirection = 1; // 1 para abajo, -1 para arriba
-            const scrollSpeed = 0.5; // Velocidad del scroll
-            const pauseTime = 3000; // Tiempo en ms para pausar en los extremos (3 segundos)
-            
-            // Función para calcular la altura máxima de desplazamiento
-            const getMaxScrollHeight = () => chatBox.scrollHeight - chatBox.clientHeight;
-
-            function autoScrollChat() {
-                const maxScrollHeight = getMaxScrollHeight();
-                
-                // Si la caja no es visible o no hay suficiente contenido para scroll, salir.
-                if (chatBox.clientHeight === 0 || maxScrollHeight <= 0) {
-                    requestAnimationFrame(autoScrollChat);
-                    return;
-                }
-
-                chatBox.scrollTop += scrollDirection * scrollSpeed;
-
-                // Si llega al final (abajo)
-                if (chatBox.scrollTop >= maxScrollHeight && scrollDirection === 1) {
-                    scrollDirection = -1; // Cambia a scroll hacia arriba
-                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime); // Pausa
-                    return;
-                } 
-                // Si llega al principio (arriba)
-                else if (chatBox.scrollTop <= 0 && scrollDirection === -1) {
-                    scrollDirection = 1; // Cambia a scroll hacia abajo
-                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime); // Pausa
-                    return;
-                }
-                
-                requestAnimationFrame(autoScrollChat);
-            }
-
-            // Iniciar el scroll cuando la página carga
-            requestAnimationFrame(autoScrollChat);
-        });
-    </script>
 </body>
 </html>
