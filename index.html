@@ -269,54 +269,29 @@
             left: 100%;
         }
 
-        /* Panel de video/stream principal */
+        /* Panel de video/stream principal - MÁS GRANDE */
         .video-container {
-            height: 70%;
+            height: 80%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .gif-placeholder {
-            width: 100%;
-            height: 300px;
-            background: rgba(157, 78, 221, 0.1);
-            border: 2px dashed var(--color-borde);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-            color: var(--color-acento);
-            transition: all 0.3s ease;
-        }
-
-        .gif-placeholder:hover {
-            background: rgba(157, 78, 221, 0.2);
-            border-color: var(--color-secundario);
-        }
-
-        .gif-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
         .waiting-text {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             font-weight: 300;
             color: var(--color-texto);
             text-shadow: 0 0 10px var(--color-sombra);
         }
 
         .channel-brand {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--color-principal), var(--color-secundario), var(--color-acento));
             -webkit-background-clip: text;
@@ -326,7 +301,7 @@
                 0 0 10px var(--color-brillo),
                 0 0 20px var(--color-brillo),
                 0 0 40px var(--color-sombra);
-            margin: 15px 0;
+            margin: 20px 0;
             letter-spacing: 3px;
             animation: glow 3s ease-in-out infinite alternate;
         }
@@ -347,18 +322,19 @@
         }
 
         .return-text {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--color-acento);
             font-weight: 300;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
-        /* Panel de métricas - MÁS COMPACTO */
+        /* Panel de métricas - AHORA EN SIDEBAR Y MÁS PEQUEÑO */
         .metrics-panel {
-            height: 1%;
+            height: 30%;
             padding: 15px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
             gap: 10px;
         }
 
@@ -379,22 +355,22 @@
         }
 
         .metric-value {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--color-acento);
             margin-bottom: 3px;
         }
 
         .metric-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--color-texto);
             opacity: 0.8;
             text-align: center;
         }
 
-        /* Panel de donaciones/peticiones - MÁS GRANDE */
+        /* Panel de donaciones/peticiones */
         .donations-panel {
-            height: 50%;
+            height: 40%;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -475,9 +451,9 @@
             font-size: 0.9rem;
         }
 
-        /* Panel de chat - MÁS GRANDE */
+        /* Panel de chat - AHORA EN MAIN CONTENT Y MÁS GRANDE */
         .chat-panel {
-            height: 50%;
+            height: 20%;
             padding: 15px;
             display: flex;
             flex-direction: column;
@@ -618,8 +594,16 @@
                 flex-direction: row;
             }
             
-            .donations-panel, .chat-panel {
+            .donations-panel, .metrics-panel {
                 flex: 1;
+            }
+            
+            .video-container {
+                height: 60%;
+            }
+            
+            .chat-panel {
+                height: 40%;
             }
         }
 
@@ -630,7 +614,6 @@
             
             .metrics-panel {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(2, 1fr);
             }
             
             .channel-name {
@@ -684,40 +667,64 @@
     <div class="main-container">
         <!-- Sección principal (más grande) -->
         <div class="main-content">
-            <!-- Panel de video/stream -->
+            <!-- Panel de video/stream - MÁS GRANDE -->
             <div class="stream-panel video-container">
                 <div class="waiting-text">Esperando la conexión...</div>
                 <div class="channel-brand">Crynel-kun</div>
                 <div class="return-text">volverá pronto</div>
-                
-                <!-- Espacio para GIF -->
-                
             </div>
             
-            <!-- Panel de métricas - MÁS COMPACTO -->
-            <div class="stream-panel metrics-panel">
-                <div class="metric">
-                    <div class="metric-value">13.7K</div>
-                    <div class="metric-label">ESPECTADORES</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">5.6k</div>
-                    <div class="metric-label">LIKES</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">1.2</div>
-                    <div class="metric-label">COMPARTIDOS</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">998</div>
-                    <div class="metric-label">SEGUIDORES NUEVOS</div>
+            <!-- Panel de chat - AHORA EN MAIN CONTENT Y MÁS GRANDE -->
+            <div class="stream-panel chat-panel">
+                <div class="panel-title">CHAT EN VIVO</div>
+                <div class="chat-box">
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
+                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
+                    <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
+                    <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
+                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Dejen un comentario! ¡Es un chat real! (bueno, simulado) 😉</div>
+                    <div class="chat-message"><span class="chat-user">@UserX:</span> Genial.</div>
+                    <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
+                    <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
+                    <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
+                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
+                    <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
+                    <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
+                    <div class="chat-message"><span class="chat-user">@Donator:</span> ¡Acabo de donar para un baile! 💃</div>
+                    <div class="chat-message"><span class="chat-user">@Moderator:</span> Recuerden ser respetuosos en el chat</div>
+                    <div class="chat-message"><span class="chat-user">@NewViewer:</span> ¿Cómo funciona el sistema de puntos?</div>
+                    <div class="chat-message"><span class="chat-user">@Viewer_123:</span> Me encanta el ambiente de este stream</div>
+                    <div class="chat-message"><span class="chat-user">@Subscriber:</span> ¡Ya tengo mis puntos listos para donar!</div>
                 </div>
             </div>
         </div>
         
         <!-- Sidebar (más pequeña) -->
         <div class="sidebar">
-            <!-- Panel de donaciones/peticiones - MÁS GRANDE -->
+            <!-- Panel de métricas - AHORA EN SIDEBAR Y MÁS PEQUEÑO -->
+            <div class="stream-panel metrics-panel">
+                <div class="metric">
+                    <div class="metric-value">1.2K</div>
+                    <div class="metric-label">ESPECTADORES</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">356</div>
+                    <div class="metric-label">LIKES</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">124</div>
+                    <div class="metric-label">COMPARTIDOS</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">87</div>
+                    <div class="metric-label">SEGUIDORES NUEVOS</div>
+                </div>
+            </div>
+            
+            <!-- Panel de donaciones/peticiones -->
             <div class="stream-panel donations-panel">
                 <div class="panel-title">DONACIONES & PETICIONES</div>
                 
@@ -757,31 +764,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Panel de chat - MÁS GRANDE -->
-            <div class="stream-panel chat-panel">
-                <div class="panel-title">CHAT EN VIVO</div>
-                <div class="chat-box">
-                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
-                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
-                    <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
-                    <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
-                    <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
-                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Dejen un comentario! ¡Es un chat real! (bueno, simulado) 😉</div>
-                    <div class="chat-message"><span class="chat-user">@UserX:</span> Genial.</div>
-                    <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
-                    <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
-                    <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
-                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
-                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
-                    <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
-                    <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
-                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
-                    <div class="chat-message"><span class="chat-user">@Donator:</span> ¡Acabo de donar para un baile! 💃</div>
-                    <div class="chat-message"><span class="chat-user">@Moderator:</span> Recuerden ser respetuosos en el chat</div>
-                    <div class="chat-message"><span class="chat-user">@NewViewer:</span> ¿Cómo funciona el sistema de puntos?</div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -812,11 +794,9 @@
                 starsContainer.appendChild(star);
             }
             
-            // Scroll automático del chat
+            // Scroll automático del chat - SOLO HACIA ABAJO
             const chatBox = document.querySelector('.chat-box');
-            let scrollDirection = 1;
-            const scrollSpeed = 0.5;
-            const pauseTime = 3000;
+            const scrollSpeed = 0.8;
             
             function autoScrollChat() {
                 const maxScrollHeight = chatBox.scrollHeight - chatBox.clientHeight;
@@ -826,17 +806,14 @@
                     return;
                 }
 
-                chatBox.scrollTop += scrollDirection * scrollSpeed;
-
-                if (chatBox.scrollTop >= maxScrollHeight && scrollDirection === 1) {
-                    scrollDirection = -1;
-                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime);
-                    return;
-                } 
-                else if (chatBox.scrollTop <= 0 && scrollDirection === -1) {
-                    scrollDirection = 1;
-                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime);
-                    return;
+                // Solo scroll hacia abajo
+                if (chatBox.scrollTop < maxScrollHeight) {
+                    chatBox.scrollTop += scrollSpeed;
+                } else {
+                    // Cuando llega al final, espera y reinicia
+                    setTimeout(() => {
+                        chatBox.scrollTop = 0;
+                    }, 2000);
                 }
                 
                 requestAnimationFrame(autoScrollChat);
@@ -882,6 +859,3 @@
     </script>
 </body>
 </html>
-
-
-
