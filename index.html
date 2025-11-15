@@ -4,180 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crynel-kun: En Espera</title>
-    
-    <style>
-        /* ---------------------------------- */
-        /* DEFINICIÓN DE VARIABLES DE COLOR */
-        /* ---------------------------------- */
-        :root {
-            --color-fondo-oscuro: #2e1d3a;    /* Morado oscuro de fondo */
-            --color-principal-claro: #bb99ee; /* Morado lila de las cajas/bordes */
-            --color-texto: #f2e9ff;
-            --color-marco-borde: #8c73b0;     /* Borde oscuro de las cajas */
-            --color-nube: #f7f0ff;
-            --color-brillo: #e6b3ff;          /* Color del brillo neón */
-        }
-
-        /* ---------------------------------- */
-        /* ESTILOS DE LA PÁGINA/LIENZO (CENTRADO EN PANTALLA) */
-        /* ---------------------------------- */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; 
-            background-color: #000000;
-        }
-        
-        .overlay-container {
-            /* Centra el overlay en el medio de la pantalla */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            
-            /* Define el ancho máximo (ej. Full HD) y la proporción 16:9 */
-            max-width: 1920px; 
-            width: 95vw; 
-            padding-bottom: 53.4375vw; /* Mantiene la proporción 16:9 de forma dinámica */
-            max-height: 90vh; 
-            
-            /* Colores de fondo */
-            background-color: var(--color-fondo-oscuro);
-            overflow: hidden; 
-            font-family: 'Arial', sans-serif;
-        }
-
-        /* ---------------------------------- */
-        /* ESTILOS DE NUBES (Simulación visual) */
-        /* ---------------------------------- */
-        .cloud {
-            position: absolute;
-            background: var(--color-nube);
-            border-radius: 50%;
-            filter: opacity(0.85); 
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            z-index: 1; 
-        }
-        /* Posicionamiento de las nubes */
-        .cloud.left-1 { top: 60%; left: -10%; width: 50%; height: 50%; }
-        .cloud.left-2 { top: 0; left: -20%; width: 40%; height: 40%; }
-        .cloud.right-1 { top: 30%; right: -10%; width: 30%; height: 30%; }
-        .cloud.right-2 { bottom: -15%; right: 20%; width: 25%; height: 25%; }
-
-
-        /* ---------------------------------- */
-        /* ESTILOS DE MARCOS (CAJAS PRINCIPALES) */
-        /* ---------------------------------- */
-        .stream-panel {
-            position: absolute;
-            background-color: rgba(187, 153, 238, 0.6); 
-            border: 3px solid var(--color-marco-borde);
-            border-radius: 15px;
-            z-index: 2; 
-            
-            /* EFECTO NEÓN/BRILLO: Sombra exterior */
-            box-shadow: 0 0 15px 5px var(--color-brillo), 0 4px 10px rgba(0, 0, 0, 0.5);
-            
-            backdrop-filter: blur(2px); 
-        }
-
-        /* Caja principal de espera */
-        .main-box {
-            top: 10%;
-            left: 5%;
-            width: 65%;
-            height: 75%;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--color-texto);
-            font-size: 2vw;
-            text-align: center;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        /* Caja de comentarios/chat */
-        .chat-box {
-            top: 50%;
-            right: 3%;
-            width: 25%;
-            height: 35%;
-            padding: 10px;
-            overflow-y: scroll;
-            font-size: 0.8vw;
-            line-height: 1.3;
-        }
-
-        /* Estilos específicos para el scrollbar (solo en Chrome/Edge) */
-        .chat-box::-webkit-scrollbar {
-            width: 5px;
-            background-color: var(--color-fondo-oscuro);
-            border-radius: 10px;
-        }
-        .chat-box::-webkit-scrollbar-thumb {
-            background-color: var(--color-brillo);
-            border-radius: 10px;
-        }
-
-        /* Caja superior derecha (para cámara o info) */
-        .info-box {
-            top: 10%;
-            right: 3%;
-            width: 25%;
-            height: 35%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--color-texto);
-            font-size: 1.5vw;
-        }
-
-        /* ---------------------------------- */
-        /* ESTILOS DE INTERACCIÓN/CONTENIDO */
-        /* ---------------------------------- */
-        .chat-message {
-            margin-bottom: 5px;
-            word-wrap: break-word;
-        }
-        .chat-user {
-            color: #e0aaff;
-            font-weight: bold;
-        }
-        .blinking-text {
-            animation: blinker 1s linear infinite;
-        }
-
-        @keyframes blinker {
-            50% { opacity: 0.4; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
 
     <div class="overlay-container">
-        <div class="cloud left-1"></div>
-        <div class="cloud left-2"></div>
-        <div class="cloud right-1"></div>
-        <div class="cloud right-2"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
         
         <div class="stream-panel main-box">
             <span class="blinking-text">
                 Esperando la conexión...<br>
-                Crynel-kun volverá pronto.
+                <span class="neon-text">Crynel-kun</span> volverá pronto.
             </span>
         </div>
         
         <div class="stream-panel info-box">
             PRÓXIMAMENTE
-        </div>
+            </div>
 
         <div class="stream-panel chat-box">
             <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> Este diseño es increíble!</div>
+            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
             <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
             <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
             <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
@@ -186,11 +36,67 @@
             <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
             <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
             <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> Ya casi estamos listos para arrancar con el proyecto!</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
             <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
             <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
+            <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
+            <div class="chat-message"><span class="chat-user">@Newbie:</span> ¿Dónde puedo ver más?</div>
+            <div class="chat-message"><span class="chat-user">@LilaLover:</span> ¡La espera es lo peor! jajaja</div>
+            <div class="chat-message"><span class="chat-user">@UserA:</span> Hola a todos.</div>
+            <div class="chat-message"><span class="chat-user">@UserB:</span> Me gusta el ambiente.</div>
+            <div class="chat-message"><span class="chat-user">@Mod_Bot:</span> Recuerden las reglas del chat.</div>
+            <div class="chat-message"><span class="chat-user">@CrynelFan:</span> ¡Ya quiero ver la página final!</div>
+            <div class="chat-message"><span class="chat-user">@Random:</span> ¿Hay emotes?</div>
+            <div class="chat-message"><span class="chat-user">@Admin:</span> Próximamente. ¡Estén atentos!</div>
+            <div class="chat-message"><span class="chat-user">@Chill:</span> Relax, gente. Todo a su tiempo.</div>
+            <div class="chat-message"><span class="chat-user">@Designer:</span> El diseño es muy top.</div>
+            <div class="chat-message"><span class="chat-user">@Coder:</span> Me gusta cómo está hecho.</div>
+            <div class="chat-message"><span class="chat-user">@FinalFan:</span> ¡Éxito!</div>
         </div>
     </div>
 
+    <script>
+        // JavaScript para el scroll automático del chat
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatBox = document.querySelector('.chat-box');
+            let scrollDirection = 1; // 1 para abajo, -1 para arriba
+            let scrollAmount = 0;
+            const scrollSpeed = 0.5; // Velocidad del scroll
+            const pauseTime = 3000; // Tiempo en ms para pausar en los extremos
+            const maxScrollHeight = chatBox.scrollHeight - chatBox.clientHeight;
+
+            function autoScrollChat() {
+                if (chatBox.clientHeight === 0 || maxScrollHeight <= 0) {
+                    // No hay scrollbar o la caja no es visible, no hacer nada
+                    requestAnimationFrame(autoScrollChat);
+                    return;
+                }
+
+                chatBox.scrollTop += scrollDirection * scrollSpeed;
+                scrollAmount += scrollDirection * scrollSpeed;
+
+                // Si llega al final (abajo)
+                if (chatBox.scrollTop >= maxScrollHeight && scrollDirection === 1) {
+                    scrollDirection = -1; // Cambia a scroll hacia arriba
+                    scrollAmount = 0; // Reinicia el contador de scroll
+                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime); // Pausa
+                    return;
+                } 
+                // Si llega al principio (arriba)
+                else if (chatBox.scrollTop <= 0 && scrollDirection === -1) {
+                    scrollDirection = 1; // Cambia a scroll hacia abajo
+                    scrollAmount = 0; // Reinicia el contador de scroll
+                    setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime); // Pausa
+                    return;
+                }
+                
+                requestAnimationFrame(autoScrollChat);
+            }
+
+            // Iniciar el scroll cuando la página carga
+            requestAnimationFrame(autoScrollChat);
+        });
+    </script>
 </body>
 </html>
