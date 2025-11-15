@@ -23,7 +23,7 @@
         
         <div class="stream-panel info-box">
             PRÓXIMAMENTE
-            </div>
+        </div>
 
         <div class="stream-panel chat-box">
             <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
@@ -57,36 +57,31 @@
     </div>
 
     <script>
-        // JavaScript para el scroll automático del chat
         document.addEventListener('DOMContentLoaded', () => {
             const chatBox = document.querySelector('.chat-box');
             let scrollDirection = 1; // 1 para abajo, -1 para arriba
-            let scrollAmount = 0;
             const scrollSpeed = 0.5; // Velocidad del scroll
-            const pauseTime = 3000; // Tiempo en ms para pausar en los extremos
+            const pauseTime = 3000; // Tiempo en ms para pausar en los extremos (3 segundos)
             const maxScrollHeight = chatBox.scrollHeight - chatBox.clientHeight;
 
             function autoScrollChat() {
+                // Verificar si hay una barra de desplazamiento visible
                 if (chatBox.clientHeight === 0 || maxScrollHeight <= 0) {
-                    // No hay scrollbar o la caja no es visible, no hacer nada
                     requestAnimationFrame(autoScrollChat);
                     return;
                 }
 
                 chatBox.scrollTop += scrollDirection * scrollSpeed;
-                scrollAmount += scrollDirection * scrollSpeed;
 
                 // Si llega al final (abajo)
                 if (chatBox.scrollTop >= maxScrollHeight && scrollDirection === 1) {
                     scrollDirection = -1; // Cambia a scroll hacia arriba
-                    scrollAmount = 0; // Reinicia el contador de scroll
                     setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime); // Pausa
                     return;
                 } 
                 // Si llega al principio (arriba)
                 else if (chatBox.scrollTop <= 0 && scrollDirection === -1) {
                     scrollDirection = 1; // Cambia a scroll hacia abajo
-                    scrollAmount = 0; // Reinicia el contador de scroll
                     setTimeout(() => requestAnimationFrame(autoScrollChat), pauseTime); // Pausa
                     return;
                 }
