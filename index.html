@@ -10,16 +10,18 @@
         /* VARIABLES Y RESET MEJORADOS */
         /* ---------------------------------- */
         :root {
-            --color-fondo: #0f0a1a;
-            --color-fondo-gradiente-1: #1a0f2e;
-            --color-fondo-gradiente-2: #2d1b4e;
+            --color-fondo: #1a0b2e;
+            --color-fondo-gradiente-1: #2d1b4e;
+            --color-fondo-gradiente-2: #4a2c7a;
             --color-principal: #9d4edd;
             --color-secundario: #c77dff;
             --color-acento: #e0aaff;
             --color-texto: #f8f7ff;
             --color-borde: #7b2cbf;
-            --color-sombra: rgba(157, 78, 221, 0.3);
+            --color-sombra: rgba(157, 78, 221, 0.4);
             --color-brillo: rgba(199, 125, 255, 0.8);
+            --color-panel: rgba(45, 27, 78, 0.8);
+            --color-badge: #ff6b6b;
         }
 
         * {
@@ -38,7 +40,7 @@
         }
 
         /* ---------------------------------- */
-        /* FONDO MEJORADO - ATMOSFÉRICO */
+        /* FONDO MEJORADO - MORADO/LILA */
         /* ---------------------------------- */
         .background {
             position: fixed;
@@ -50,7 +52,7 @@
             background: 
                 radial-gradient(circle at 20% 80%, var(--color-fondo-gradiente-1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, var(--color-fondo-gradiente-2) 0%, transparent 50%),
-                linear-gradient(135deg, var(--color-fondo) 0%, #1a0f2e 100%);
+                linear-gradient(135deg, var(--color-fondo) 0%, #2d1b4e 100%);
             overflow: hidden;
         }
 
@@ -75,7 +77,7 @@
         }
 
         /* ---------------------------------- */
-        /* NUBES MEJORADAS - REALISTAS Y ESPONJOSAS */
+        /* NUBES MEJORADAS - TONOS MORADOS */
         /* ---------------------------------- */
         .clouds-container {
             position: fixed;
@@ -90,15 +92,11 @@
         .cloud {
             position: absolute;
             background: 
-                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0.4) 60%, transparent 80%),
-                radial-gradient(circle at 70% 40%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 20%, rgba(255,255,255,0.3) 50%, transparent 70%),
-                radial-gradient(circle at 40% 70%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.2) 50%, transparent 70%);
+                radial-gradient(circle at 30% 30%, rgba(199, 125, 255, 0.15) 0%, rgba(157, 78, 221, 0.1) 20%, rgba(123, 44, 191, 0.05) 60%, transparent 80%),
+                radial-gradient(circle at 70% 40%, rgba(224, 170, 255, 0.2) 0%, rgba(199, 125, 255, 0.15) 20%, rgba(157, 78, 221, 0.1) 50%, transparent 70%);
             border-radius: 50%;
-            filter: blur(15px);
-            opacity: 0.7;
-            box-shadow: 
-                0 0 40px 20px rgba(255, 255, 255, 0.1),
-                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            filter: blur(25px);
+            opacity: 0.6;
         }
 
         /* Nubes individuales con diferentes tamaños y animaciones */
@@ -138,25 +136,16 @@
             animation-delay: 15s;
         }
 
-        .cloud-5 {
-            width: 200px;
-            height: 80px;
-            top: 75%;
-            left: -300px;
-            animation: floatCloud 40s linear infinite;
-            animation-delay: 20s;
-        }
-
         @keyframes floatCloud {
             0% {
                 transform: translateX(0) translateY(0) scale(1);
                 opacity: 0;
             }
             10% {
-                opacity: 0.7;
+                opacity: 0.6;
             }
             90% {
-                opacity: 0.7;
+                opacity: 0.6;
             }
             100% {
                 transform: translateX(calc(100vw + 500px)) translateY(-20px) scale(1.1);
@@ -172,12 +161,12 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 40px;
+            padding: 15px 40px;
             z-index: 10;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(15, 10, 26, 0.7);
+            background: rgba(26, 11, 46, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(157, 78, 221, 0.3);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
@@ -217,37 +206,41 @@
         }
 
         /* ---------------------------------- */
-        /* CONTENEDOR PRINCIPAL */
+        /* CONTENEDOR PRINCIPAL - NUEVA DISTRIBUCIÓN */
         /* ---------------------------------- */
-        .overlay-container {
+        .main-container {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 1400px;
-            height: 75vh;
-            background: rgba(26, 15, 46, 0.6);
-            border-radius: 20px;
-            overflow: hidden;
-            z-index: 5;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(157, 78, 221, 0.2);
-            box-shadow: 
-                0 0 50px rgba(157, 78, 221, 0.2),
-                inset 0 0 50px rgba(157, 78, 221, 0.1);
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            grid-template-rows: 1fr auto;
-            gap: 20px;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 80px);
+            display: flex;
             padding: 20px;
+            gap: 20px;
+        }
+
+        /* Sección principal (más grande) */
+        .main-content {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Sección lateral (más pequeña) */
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 350px;
         }
 
         /* ---------------------------------- */
         /* PANELES PRINCIPALES */
         /* ---------------------------------- */
         .stream-panel {
-            background: rgba(45, 27, 78, 0.7);
+            background: var(--color-panel);
             border-radius: 15px;
             border: 1px solid var(--color-borde);
             box-shadow: 
@@ -276,28 +269,54 @@
             left: 100%;
         }
 
-        /* Panel principal */
-        .main-box {
-            grid-column: 1;
-            grid-row: 1;
+        /* Panel de video/stream principal */
+        .video-container {
+            height: 65%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gif-placeholder {
+            width: 100%;
+            height: 300px;
+            background: rgba(157, 78, 221, 0.1);
+            border: 2px dashed var(--color-borde);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--color-acento);
+            transition: all 0.3s ease;
+        }
+
+        .gif-placeholder:hover {
+            background: rgba(157, 78, 221, 0.2);
+            border-color: var(--color-secundario);
+        }
+
+        .gif-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
         .waiting-text {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
             font-weight: 300;
             color: var(--color-texto);
             text-shadow: 0 0 10px var(--color-sombra);
         }
 
         .channel-brand {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--color-principal), var(--color-secundario), var(--color-acento));
             -webkit-background-clip: text;
@@ -307,7 +326,7 @@
                 0 0 10px var(--color-brillo),
                 0 0 20px var(--color-brillo),
                 0 0 40px var(--color-sombra);
-            margin: 20px 0;
+            margin: 15px 0;
             letter-spacing: 3px;
             animation: glow 3s ease-in-out infinite alternate;
         }
@@ -328,49 +347,170 @@
         }
 
         .return-text {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--color-acento);
             font-weight: 300;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
-        /* Panel de información */
-        .info-box {
-            grid-column: 2;
-            grid-row: 1;
+        /* Panel de métricas */
+        .metrics-panel {
+            height: 35%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .metric {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: rgba(123, 44, 191, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .metric:hover {
+            background: rgba(123, 44, 191, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-acento);
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--color-texto);
+            opacity: 0.8;
+        }
+
+        /* Panel de donaciones/peticiones */
+        .donations-panel {
+            height: 40%;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-acento);
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+            padding-bottom: 8px;
+        }
+
+        .donation-goal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: rgba(123, 44, 191, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .goal-label {
+            font-weight: 600;
+            color: var(--color-acento);
+        }
+
+        .goal-progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-principal), var(--color-secundario));
+            border-radius: 4px;
+            width: 65%;
+        }
+
+        .donation-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action {
+            background: rgba(157, 78, 221, 0.3);
+            border: 1px solid var(--color-borde);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action:hover {
+            background: rgba(157, 78, 221, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .action-cost {
+            font-weight: 600;
+            color: var(--color-acento);
+            margin-top: 5px;
+        }
+
+        /* Panel de información */
+        .info-panel {
+            height: 30%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .coming-soon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--color-acento);
             text-shadow: 0 0 15px var(--color-brillo);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .countdown {
-            font-size: 1.2rem;
+        .next-stream {
+            font-size: 1.1rem;
             color: var(--color-texto);
             text-align: center;
             margin-top: 10px;
+            opacity: 0.9;
         }
 
         /* Panel de chat */
-        .chat-box {
-            grid-column: 1 / span 2;
-            grid-row: 2;
-            height: 200px;
+        .chat-panel {
+            height: 30%;
             padding: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-box {
+            flex: 1;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 8px;
+            padding-right: 5px;
         }
 
         /* ---------------------------------- */
@@ -470,15 +610,6 @@
             animation-delay: 5s;
         }
 
-        .element-3 {
-            top: 40%;
-            left: 85%;
-            font-size: 2rem;
-            color: var(--color-acento);
-            animation-duration: 35s;
-            animation-delay: 10s;
-        }
-
         @keyframes floatElement {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -497,27 +628,29 @@
         /* ---------------------------------- */
         /* RESPONSIVE */
         /* ---------------------------------- */
-        @media (max-width: 1024px) {
-            .overlay-container {
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                max-width: 100%;
+                flex-direction: row;
+            }
+            
+            .donations-panel, .info-panel, .chat-panel {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                flex-direction: column;
+            }
+            
+            .metrics-panel {
                 grid-template-columns: 1fr;
-                grid-template-rows: 1fr auto auto;
-                height: 85vh;
-            }
-            
-            .main-box {
-                grid-column: 1;
-                grid-row: 1;
-            }
-            
-            .info-box {
-                grid-column: 1;
-                grid-row: 2;
-                height: 150px;
-            }
-            
-            .chat-box {
-                grid-column: 1;
-                grid-row: 3;
+                grid-template-rows: repeat(4, 1fr);
             }
             
             .channel-name {
@@ -525,11 +658,11 @@
             }
             
             .channel-brand {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             
             .waiting-text, .return-text {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -546,14 +679,12 @@
         <div class="cloud cloud-2"></div>
         <div class="cloud cloud-3"></div>
         <div class="cloud cloud-4"></div>
-        <div class="cloud cloud-5"></div>
     </div>
     
     <!-- Elementos flotantes decorativos -->
     <div class="floating-elements">
         <div class="floating-element element-1">✦</div>
         <div class="floating-element element-2">❖</div>
-        <div class="floating-element element-3">♡</div>
     </div>
     
     <!-- Header con nombre del canal -->
@@ -566,37 +697,107 @@
     </header>
     
     <!-- Contenedor principal -->
-    <div class="overlay-container">
-        <!-- Panel principal -->
-        <div class="stream-panel main-box">
-            <div class="waiting-text">Esperando la conexión...</div>
-            <div class="channel-brand">Crynel-kun</div>
-            <div class="return-text">volverá pronto</div>
+    <div class="main-container">
+        <!-- Sección principal (más grande) -->
+        <div class="main-content">
+            <!-- Panel de video/stream -->
+            <div class="stream-panel video-container">
+                <div class="waiting-text">Esperando la conexión...</div>
+                <div class="channel-brand">Crynel-kun</div>
+                <div class="return-text">volverá pronto</div>
+                
+                <!-- Espacio para GIF -->
+                <div class="gif-placeholder">
+                    <i class="fas fa-film"></i>
+                    <span>Espacio para GIF/Video</span>
+                    <small>Arrastra tu GIF aquí o haz clic para subir</small>
+                </div>
+            </div>
+            
+            <!-- Panel de métricas -->
+            <div class="stream-panel metrics-panel">
+                <div class="metric">
+                    <div class="metric-value">1.2K</div>
+                    <div class="metric-label">ESPECTADORES</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">356</div>
+                    <div class="metric-label">LIKES</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">124</div>
+                    <div class="metric-label">COMPARTIDOS</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">87</div>
+                    <div class="metric-label">SEGUIDORES NUEVOS</div>
+                </div>
+            </div>
         </div>
         
-        <!-- Panel de información -->
-        <div class="stream-panel info-box">
-            <div class="coming-soon">PRÓXIMAMENTE</div>
-            <div class="countdown">Nuevo contenido en preparación</div>
-        </div>
-
-        <!-- Panel de chat -->
-        <div class="stream-panel chat-box">
-            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
-            <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
-            <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Dejen un comentario! ¡Es un chat real! (bueno, simulado) 😉</div>
-            <div class="chat-message"><span class="chat-user">@UserX:</span> Genial.</div>
-            <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
-            <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
-            <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
-            <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
-            <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
-            <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
-            <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
+        <!-- Sidebar (más pequeña) -->
+        <div class="sidebar">
+            <!-- Panel de donaciones/peticiones -->
+            <div class="stream-panel donations-panel">
+                <div class="panel-title">DONACIONES & PETICIONES</div>
+                
+                <div class="donation-goal">
+                    <div class="goal-label">Meta de Donaciones</div>
+                    <div class="goal-amount">$42 / $100</div>
+                </div>
+                
+                <div class="goal-progress">
+                    <div class="progress-bar"></div>
+                </div>
+                
+                <div class="donation-actions">
+                    <div class="action">
+                        <div>😄 Bailar</div>
+                        <div class="action-cost">50 puntos</div>
+                    </div>
+                    <div class="action">
+                        <div>🎭 Cambiar cara</div>
+                        <div class="action-cost">30 puntos</div>
+                    </div>
+                    <div class="action">
+                        <div>🎵 Canción</div>
+                        <div class="action-cost">100 puntos</div>
+                    </div>
+                    <div class="action">
+                        <div>🍕 Comer algo</div>
+                        <div class="action-cost">75 puntos</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel de información -->
+            <div class="stream-panel info-panel">
+                <div class="coming-soon">PRÓXIMO STREAM</div>
+                <div class="next-stream">Jueves 21:00 GMT-5</div>
+                <div class="next-stream">Jugando: Minecraft Modded</div>
+            </div>
+            
+            <!-- Panel de chat -->
+            <div class="stream-panel chat-panel">
+                <div class="panel-title">CHAT EN VIVO</div>
+                <div class="chat-box">
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Bienvenidos a la página oficial!</div>
+                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Este diseño es increíble!</div>
+                    <div class="chat-message"><span class="chat-user">@LilaLover:</span> Se ve muy gótico, me gusta. 🦇</div>
+                    <div class="chat-message"><span class="chat-user">@Visitante:</span> ¿Qué es "Crynel-kun"?</div>
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> Es el nombre del proyecto. ¡Síguenos en las redes!</div>
+                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Dejen un comentario! ¡Es un chat real! (bueno, simulado) 😉</div>
+                    <div class="chat-message"><span class="chat-user">@UserX:</span> Genial.</div>
+                    <div class="chat-message"><span class="chat-user">@UserY:</span> 💜💜💜</div>
+                    <div class="chat-message"><span class="chat-user">@Test:</span> Esto es un comentario de prueba para ver el scroll.</div>
+                    <div class="chat-message"><span class="chat-user">@Test2:</span> ¡Funciona perfecto!</div>
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Ya casi estamos listos para arrancar con el proyecto!</div>
+                    <div class="chat-message"><span class="chat-user">@Fan_1:</span> ¡Qué emoción!</div>
+                    <div class="chat-message"><span class="chat-user">@UserZ:</span> ¡Este brillo es perfecto!</div>
+                    <div class="chat-message"><span class="chat-user">@GamerPro:</span> ¿Habrá gameplays?</div>
+                    <div class="chat-message"><span class="chat-user">@Admin:</span> ¡Claro! Y mucho más.</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -659,6 +860,20 @@
 
             // Iniciar el scroll automático
             requestAnimationFrame(autoScrollChat);
+            
+            // Simular métricas en tiempo real
+            setInterval(() => {
+                const viewers = document.querySelector('.metric:nth-child(1) .metric-value');
+                const likes = document.querySelector('.metric:nth-child(2) .metric-value');
+                
+                // Incrementar viewers aleatoriamente
+                let currentViewers = parseInt(viewers.textContent);
+                viewers.textContent = (currentViewers + Math.floor(Math.random() * 3)) + '';
+                
+                // Incrementar likes aleatoriamente
+                let currentLikes = parseInt(likes.textContent);
+                likes.textContent = (currentLikes + Math.floor(Math.random() * 2)) + '';
+            }, 5000);
         });
     </script>
 </body>
