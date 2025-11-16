@@ -424,7 +424,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 0px;
             flex-grow: 1;
         }
 
@@ -680,6 +680,30 @@
     max-width: 150px;
 }
 
+/* GIF decorativo en esquina inferior derecha */
+.decorative-gif {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px; /* Tamaño pequeño */
+    height: 80px;
+    z-index: 5;
+    pointer-events: none; /* No interfiere con clicks */
+}
+
+.decorative-gif img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px var(--color-sombra));
+    opacity: 0.7; /* Sutil, no llama mucho la atención */
+    transition: opacity 0.3s ease;
+}
+
+.decorative-gif:hover img {
+    opacity: 0.9; /* Un poco más visible al hover */
+}
+
         
     </style>
 </head>
@@ -726,6 +750,10 @@
                 <div class="waiting-text">Esperando la conexión...</div>
                 <div class="channel-brand">Crynel-kun</div>
                 <div class="return-text">volverá pronto</div>
+                <!-- GIF decorativo -->
+                <div class="decorative-gif">
+                    <img src="animacion.gif" alt="Animación decorativa">
+                </div>
             </div>
             
             <!-- Panel de chat - AHORA EN MAIN CONTENT Y MÁS GRANDE -->
@@ -995,6 +1023,7 @@
     </script>
 </body>
 </html>
+
 
 
 
