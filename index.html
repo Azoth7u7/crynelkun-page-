@@ -705,18 +705,54 @@
 }
 
 /* Título integrado dentro del panel del video */
-.video-title-integrated {
+/* Título de video en directo - Estilo profesional */
+.stream-title {
     margin-top: 25px;
-    padding: 10px 20px;
-    background: rgba(157, 78, 221, 0.1);
-    border: 1px solid var(--color-borde);
-    border-radius: 8px;
-    font-size: 1.1rem;
-    color: var(--color-acento);
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-texto);
     text-align: center;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
+    line-height: 1.3;
+    
+    /* Efectos de texto profesionales */
+    text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(157, 78, 221, 0.3);
+    
+    /* Gradiente sutil en el texto */
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-acento) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    /* Espaciado y contenedor */
+    max-width: 800px;
+    padding: 12px 25px;
+    
+    /* Borde sutil y fondo */
+    background-color: rgba(45, 27, 78, 0.4);
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    
+    /* Sombra exterior para destacar */
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(157, 78, 221, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    /* Transición suave */
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover para interactividad */
+.stream-title:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(157, 78, 221, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(199, 125, 255, 0.5);
 }
     </style>
 </head>
@@ -1069,6 +1105,7 @@
     </script>
 </body>
 </html>
+
 
 
 
