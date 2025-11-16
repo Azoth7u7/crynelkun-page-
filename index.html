@@ -632,6 +632,51 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+        .channel-logo-header {
+            height: 35px; /* Tamaño adecuado para el header */
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-header {
+            height: 100%;
+            width: auto;
+            max-width: 120px; /* Ancho máximo controlado */
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--color-sombra));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-header:hover {
+            transform: scale(1.08);
+        }
+
+        /* Logo más pequeño */
+.channel-logo-header {
+    height: 30px;
+}
+
+.logo-header {
+    max-width: 100px;
+}
+
+/* Logo más grande */
+.channel-logo-header {
+    height: 40px;
+}
+
+.logo-header {
+    max-width: 150px;
+}
+
+        
     </style>
 </head>
 <body>
@@ -656,7 +701,12 @@
     
     <!-- Header con nombre del canal -->
     <header class="header">
-        <div class="channel-name">ShameRoom.live</div>
+        <div class="header-content">
+            <div class="channel-name">ShameRoom.live</div>
+            <div class="channel-logo-header">
+                <img src="tu-logo.png" alt="ShameRoom Logo" class="logo-header">
+            </div>
+        </div>
         <div class="channel-status">
             <div class="live-indicator"></div>
             <span>EN ESPERA • PRÓXIMAMENTE</span>
@@ -812,7 +862,7 @@
                 
                 <div class="donation-goal">
                     <div class="goal-label">Meta de Donaciones</div>
-                    <div class="goal-amount">$42 / $100</div>
+                    <div class="goal-amount">$1248 / $10000</div>
                 </div>
                 
                 <div class="goal-progress">
@@ -821,28 +871,28 @@
                 
                 <div class="donation-actions">
                     <div class="action">
-                        <div>😄 Bailar</div>
+                        <div>Saludo personalizado de Crynel 😈</div>
                         <div class="action-cost">50 puntos</div>
                     </div>
                     <div class="action">
-                        <div>🎭 Cambiar cara</div>
-                        <div class="action-cost">30 puntos</div>
+                        <div>Saludo hot de Efis 💦</div>
+                        <div class="action-cost">40 puntos</div>
                     </div>
                     <div class="action">
-                        <div>🎵 Canción</div>
-                        <div class="action-cost">100 puntos</div>
-                    </div>
-                    <div class="action">
-                        <div>🍕 Comer algo</div>
+                        <div>Tatua temporalmente a Efis (plumón) 🔥</div>
                         <div class="action-cost">75 puntos</div>
                     </div>
                     <div class="action">
-                        <div>🎮 Cambiar juego</div>
+                        <div>Spank x10 + cuenta en voz alta 🍑</div>
+                        <div class="action-cost">80 puntos</div>
+                    </div>
+                    <div class="action">
+                        <div>Control de juguetes sexuales 5 min 🍆</div>
                         <div class="action-cost">150 puntos</div>
                     </div>
                     <div class="action">
-                        <div>💬 Decir algo</div>
-                        <div class="action-cost">25 puntos</div>
+                        <div>¡EFIS CUM + SQUIRT EN VIVO! 🌊</div>
+                        <div class="action-cost">200 puntos</div>
                     </div>
                 </div>
             </div>
@@ -941,6 +991,7 @@
     </script>
 </body>
 </html>
+
 
 
 
