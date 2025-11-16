@@ -704,19 +704,16 @@
     opacity: 0.9; /* Un poco más visible al hover */
 }
 
-/* Solo nombre del video */
-.video-title-simple {
-    margin-top: 10px;
-    padding: 12px 20px;
-    background: var(--color-panel);
-    border-radius: 10px;
-    border: 1px solid var(--color-borde);
-    font-size: 1.1rem;
+.video-title-integrated {
+    margin-top: 20px;
+    padding: 8px 16px;
+    font-size: 1rem;
     color: var(--color-texto);
     font-weight: 500;
     text-align: center;
-    box-shadow: 0 0 10px var(--color-sombra);
-    backdrop-filter: blur(3px);
+    opacity: 0.9;
+    border-top: 1px solid rgba(157, 78, 221, 0.3);
+    padding-top: 15px;
 }
     </style>
 </head>
@@ -767,12 +764,13 @@
                 <div class="decorative-gif">
                     <img src="animacion.gif" alt="Animación decorativa">
                 </div>
+                 <!-- TÍTULO INTEGRADO DENTRO DEL PANEL -->
+                <div class="video-title-integrated">
+                    Minecraft Modded - Part 3: Explorando nuevas dimensiones
+                </div>
             </div>
 
-            <!-- SOLO NOMBRE DEL VIDEO -->
-        <div class="video-title-simple">
-            <span>Minecraft Modded - Part 3: Explorando nuevas dimensiones</span>
-        </div>
+       
             
             <!-- Panel de chat - AHORA EN MAIN CONTENT Y MÁS GRANDE -->
             <div class="stream-panel chat-panel">
@@ -1068,6 +1066,7 @@
     </script>
 </body>
 </html>
+
 
 
 
