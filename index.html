@@ -871,7 +871,7 @@
             <!-- Panel de métricas - AHORA EN SIDEBAR Y MÁS PEQUEÑO -->
             <div class="stream-panel metrics-panel">
                 <div class="metric">
-                    <div class="metric-value">1.2K</div>
+                    <div class="metric-value">1250</div>
                     <div class="metric-label">ESPECTADORES</div>
                 </div>
                 <div class="metric">
@@ -988,17 +988,44 @@
             
             // Simular métricas en tiempo real
             setInterval(() => {
-                const viewers = document.querySelector('.metric:nth-child(1) .metric-value');
-                const likes = document.querySelector('.metric:nth-child(2) .metric-value');
-                
-                // Incrementar viewers aleatoriamente
-                let currentViewers = parseInt(viewers.textContent);
-                viewers.textContent = (currentViewers + Math.floor(Math.random() * 3)) + '';
-                
-                // Incrementar likes aleatoriamente
-                let currentLikes = parseInt(likes.textContent);
-                likes.textContent = (currentLikes + Math.floor(Math.random() * 2)) + '';
-            }, 5000);
+    const viewers = document.querySelector('.metric:nth-child(1) .metric-value');
+    const likes = document.querySelector('.metric:nth-child(2) .metric-value');
+    
+    // Función mejorada para convertir métricas
+    function parseMetricValue(value) {
+        value = value.trim().toUpperCase();
+        
+        if (value.includes('K')) {
+            return Math.round(parseFloat(value) * 1000);
+        }
+        if (value.includes('M')) {
+            return Math.round(parseFloat(value) * 1000000);
+        }
+        return parseInt(value) || 0;
+    }
+    
+            // Función mejorada para formatear
+            function formatMetricValue(num) {
+                if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M';
+                }
+                if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K';
+                }
+                return num.toString();
+            }
+            
+            // Incrementar viewers
+            let currentViewers = parseMetricValue(viewers.textContent);
+            currentViewers += Math.floor(Math.random() * 3);
+            viewers.textContent = formatMetricValue(currentViewers);
+            
+            // Incrementar likes
+            let currentLikes = parseMetricValue(likes.textContent);
+            currentLikes += Math.floor(Math.random() * 2);
+            likes.textContent = formatMetricValue(currentLikes);
+            
+        }, 5000);
             
             // Interactividad para las acciones de donación
             const actions = document.querySelectorAll('.action');
@@ -1023,6 +1050,7 @@
     </script>
 </body>
 </html>
+
 
 
 
